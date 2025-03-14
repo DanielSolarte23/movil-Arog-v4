@@ -55,6 +55,8 @@ flutter:
     - assets/images/ArogV2.png
     - assets/images/Google.png
     - assets/images/Facebook.jpg
+    - assets/images/Arog.png
+
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
