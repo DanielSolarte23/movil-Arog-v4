@@ -12,22 +12,18 @@ class _MenuState extends State<Menu> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(16.0), // Margen general
+        padding: const EdgeInsets.all(16.0), 
         child: Column(
           children: [
-            // Fila con el ícono de configuración, input de búsqueda, notificaciones y perfil
             Row(
               children: [
-                // Ícono de configuración
                 IconButton(
                   onPressed: () {
                     print('Ícono de configuración presionado');
                   },
                   icon: Icon(Icons.settings, size: 40),
                 ),
-                // Espacio entre el ícono de configuración y el input
-                SizedBox(width: 16), // Espacio de 16 píxeles
-                // Input de búsqueda con ícono de lupa
+                SizedBox(width: 16), 
                 Expanded(
                   child: TextField(
                     decoration: InputDecoration(

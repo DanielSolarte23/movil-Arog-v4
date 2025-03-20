@@ -20,13 +20,16 @@ class _IniciarSesionState extends State<IniciarSesion> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              
               Padding(
+              
                 padding: EdgeInsets.all(60.0),
                 child: Image.asset(
                   'assets/images/ArogV2.png',
                   width: 200,
                   height: 200,
                 ),
+              
               ),
               SizedBox(height: 20),
               Padding(
