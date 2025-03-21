@@ -1,4 +1,4 @@
-import 'package:arog_movil/screen/registrarte.dart';
+import 'package:arog_movil/screen/Rutas.dart';
 import 'package:flutter/material.dart';
 
 void main(){
@@ -9,7 +9,7 @@ class Myapp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Registrarse(),
+      home: Rutas(),
     );
   }
 }

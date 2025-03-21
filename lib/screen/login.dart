@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:arog_movil/screen/registrarte.dart';
 
 class IniciarSesion extends StatefulWidget {
   const IniciarSesion({super.key});
@@ -37,7 +38,20 @@ class _IniciarSesionState extends State<IniciarSesion> {
                 child: TextFormField(
                   decoration: InputDecoration(
                     labelText: 'Correo Electrónico',
-                    border: OutlineInputBorder(),
+                    border: OutlineInputBorder(
+                      
+                     borderRadius: BorderRadius.circular(8.0),
+                      borderSide: BorderSide(color: Colors.lightGreen, width: 1),
+                    
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: BorderSide(color: Colors.lightGreen, width: 1),
+                    ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                        borderSide: BorderSide(color: Colors.lightGreen,width: 1)
+                      ),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -57,8 +71,17 @@ class _IniciarSesionState extends State<IniciarSesion> {
                     labelStyle: TextStyle(color: Colors.blueGrey),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8.0),
-                      borderSide: BorderSide(color: Colors.lightGreen, width: 2),
+                      borderSide: BorderSide(color: Colors.lightGreen, width: 1),
+                    
                     ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: BorderSide(color: Colors.lightGreen, width: 1),
+                    ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                        borderSide: BorderSide(color: Colors.lightGreen,width: 1)
+                      )
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -94,9 +117,9 @@ class _IniciarSesionState extends State<IniciarSesion> {
                   height: 50,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
+                      backgroundColor: Colors.lightGreen,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
                     onPressed: () {
@@ -111,11 +134,33 @@ class _IniciarSesionState extends State<IniciarSesion> {
                 ),
               ),
               SizedBox(height: 20),
+               Padding(
+                padding: EdgeInsets.symmetric(horizontal: 40),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("No tiene usuario", style: TextStyle(fontSize: 14)),
+                    SizedBox(width: 5),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context, 
+                          MaterialPageRoute(builder: (context)=> const Registrarse()));
+                      },
+                      child: Text(
+                        "Registarse",
+                        style: TextStyle(fontSize: 14, color: Colors.green, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
               Text(
                 " Ingresar con",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 30),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40),
                 child: Column(
@@ -142,7 +187,7 @@ class _IniciarSesionState extends State<IniciarSesion> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 20),
                     SizedBox(
                       width: double.infinity,
                       height: 50,

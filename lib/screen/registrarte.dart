@@ -33,67 +33,50 @@ class _RegistrarseState extends State<Registrarse> {
                 'Registrarse',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
-          
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    labelText: 'Nombre',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                      borderSide: const BorderSide(color: Colors.lightGreen, width: 2),
-                    ),
-                  ),
+              padding: const EdgeInsets.symmetric(horizontal: 26),      
+              child:CustomInput(label: "Nombre", hint: "Ingresa tu nombre"),
                 ),
-              ),
-              const SizedBox(height: 20),
-              const Text('Correo Electrónico'),
+              SizedBox(height: 16),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    labelText: 'Correo Electrónico',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                      borderSide: const BorderSide(color: Colors.lightGreen, width: 2),
-                    ),
-                  ),
+                padding: const EdgeInsets.symmetric(horizontal: 26),
+                child:CustomInput(label: "Correo Electronico", hint: "Correo electronico"),
                 ),
-              ),
-              const SizedBox(height: 20),
-              const Text('Fecha de nacimiento'),
+              SizedBox(height: 16),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40),
-                child: DatePickerFormField(),
-              ),
-              const SizedBox(height: 20),
-              const Text('Contraseña'),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40),
-                child: TextFormField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    labelText: 'Contraseña',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                      borderSide: const BorderSide(color: Colors.green, width: 2),
-                    ),
-                  ),
+                padding: const EdgeInsets.symmetric(horizontal: 26),   
+              child:CustomDateInput(label: "Fecha de nacimiento"),
                 ),
-              ),
-              const SizedBox(height: 20),
-              const Text('Confirmar contraseña'),
+              SizedBox(height: 16),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40),
-                child: TextFormField(
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: 'Confirmar contraseña',
-                    border: OutlineInputBorder(),
-                  ),
+                padding: const EdgeInsets.symmetric(horizontal: 26),
+              child:CustomPasswordInput(label: "Contraseña"),
                 ),
-              ),
-            ],
+              SizedBox(height: 16),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 26),
+              child:CustomPasswordInput(label: "Confirmar Contraseña"),
+                ),
+              SizedBox(height: 16),
+            ElevatedButton(
+              onPressed:(){
+                print('Boton de registro presionado');
+              } , 
+              child: Text(
+                'Registrarse',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  foregroundColor:Colors.white,
+                  padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                  shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  ),
+                  minimumSize:Size(250, 60)
+                ),
+                ),
+            ], 
           ),
         ),
       ),
@@ -101,14 +84,67 @@ class _RegistrarseState extends State<Registrarse> {
   }
 }
 
-class DatePickerFormField extends StatefulWidget {
+
+
+//INPUTS NORMALES REUTILIZABLE
+// Widget reutilizable para inputs normales
+class CustomInput extends StatelessWidget {
+  final String label;
+  final String hint;
+
+  const CustomInput({required this.label, required this.hint});
+
   @override
-  _DatePickerFormFieldState createState() => _DatePickerFormFieldState();
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 2.0),
+        child:TextField(
+          decoration: InputDecoration(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.0),
+              borderSide: BorderSide(color: Colors.green, width: 1),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.0),
+              borderSide: BorderSide(color: Colors.green,width: 1)
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.0),
+              borderSide: BorderSide(color: Colors.green, width: 1),
+            ),
+            hintText: hint,
+          ),
+          )
+        ),
+        
+      ],
+    );
+  }
 }
 
-class _DatePickerFormFieldState extends State<DatePickerFormField> {
-  final TextEditingController _controller = TextEditingController();
+// campo de fecha
 
+
+class CustomDateInput extends StatefulWidget {
+  final String label;
+
+  const CustomDateInput({required this.label});
+
+  @override
+  _CustomDateInputState createState() => _CustomDateInputState();
+}
+
+class _CustomDateInputState extends State<CustomDateInput> {
+  TextEditingController _dateController = TextEditingController();
+
+  // Método para abrir el selector de fecha
   Future<void> _selectDate(BuildContext context) async {
     DateTime? pickedDate = await showDatePicker(
       context: context,
@@ -118,24 +154,113 @@ class _DatePickerFormFieldState extends State<DatePickerFormField> {
     );
 
     if (pickedDate != null) {
-      _controller.text = "${pickedDate.toLocal()}".split(' ')[0]; // yyyy-MM-dd
+      setState(() {
+        _dateController.text = "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
+      });
     }
   }
 
-  @override
+ @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: _controller,
-      readOnly: true,
-      onTap: () => _selectDate(context), // Evento para abrir el DatePicker
-      decoration: InputDecoration(
-        labelText: 'Selecciona una fecha',
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.0),
-          borderSide: const BorderSide(color: Colors.lightGreen, width: 2),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          widget.label,
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
-        suffixIcon: const Icon(Icons.calendar_today, color: Colors.lightGreen),
-      ),
+
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 2.0),           
+        child:TextField(
+          controller: _dateController,
+          readOnly: true, // Para que el usuario no pueda escribir manualmente
+          decoration: InputDecoration(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.0),
+              borderSide: BorderSide(color: Colors.green, width: 1),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.0),
+              borderSide: BorderSide(color: Colors.green,width: 1)
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.0),
+              borderSide: BorderSide(color: Colors.green, width: 1),
+            ),
+            hintText: "Selecciona una fecha",
+            suffixIcon: Icon(Icons.calendar_today,
+            color: Colors.green
+            ), // Icono de calendario
+          ),
+          onTap: () => _selectDate(context), // Abre el selector de fecha al tocar el input
+        ),
+          ),
+      ],
     );
   }
 }
+
+// input contraseña 
+
+
+class CustomPasswordInput extends StatefulWidget {
+  final String label;
+
+  const CustomPasswordInput({required this.label});
+
+  @override
+  _CustomPasswordInputState createState() => _CustomPasswordInputState();
+}
+
+class _CustomPasswordInputState extends State<CustomPasswordInput> {
+  bool _obscureText = true; // Estado para ocultar/mostrar la contraseña
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          widget.label,
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 2.0),
+          
+       child:TextField(
+          obscureText: _obscureText, // Oculta la contraseña
+          decoration: InputDecoration(
+            border: OutlineInputBorder(
+
+            borderRadius: BorderRadius.circular(8.0),
+              borderSide: BorderSide(color: Colors.green, width: 1),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.0),
+              borderSide: BorderSide(color: Colors.green,width: 1)
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.0),
+              borderSide: BorderSide(color: Colors.green, width: 1),
+            ),
+            hintText: "Ingresa tu contraseña",
+            suffixIcon: IconButton(
+              icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility,
+              color: Colors.green,
+              ),
+              onPressed: () {
+                setState(() {
+                  _obscureText = !_obscureText; // Alternar visibilidad
+                });
+              },
+            ),
+          ),
+        ), 
+          ),
+      ],
+    );
+  }
+}
+
