@@ -1,5 +1,9 @@
+
+import 'package:arog_movil/views/rutasRecolector.dart';
 import 'package:flutter/material.dart';
-import 'package:arog_movil/views/verificacion.dart';
+//import 'package:arog_movil/views/homeAdmin.dart';
+// import 'package:arog_movil/views/Restablecerpassword.dart';
+
 
 void main() => runApp(const MyApp());
 
@@ -10,10 +14,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Alquiler de vehiculos',
-      home: Scaffold(
-        body: VerificationScreen(),
-      ),
+      title: 'AROG-MOVIL',
+      home: Scaffold(body: RutasRecolector()),
     );
   }
 }

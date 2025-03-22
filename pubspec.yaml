@@ -53,6 +53,10 @@ dev_dependencies:
 flutter:
   assets: 
    - assets/images/ArogV2.png
+   - assets/images/Arog-1.png
+   - assets/images/Arog-2.png
+
+   
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
