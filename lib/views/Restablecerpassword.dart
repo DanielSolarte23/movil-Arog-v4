@@ -1,3 +1,4 @@
+import 'package:arog_movil/views/perfilCiudadano.dart';
 import 'package:arog_movil/views/verificacion.dart';
 import 'package:flutter/material.dart';
 
@@ -111,6 +112,12 @@ class Restablecerpassword extends StatelessWidget {
               const SizedBox(height: 15),
               ElevatedButton(
                 onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Perfilciudadano(),
+                    ),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blueGrey[100],
