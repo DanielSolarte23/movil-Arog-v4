@@ -13,8 +13,7 @@ class VerificationScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 40),
-              
+              const SizedBox(height: 100),
               Image.asset(
                 'assets/images/ArogV2.png',
                 height: 120,

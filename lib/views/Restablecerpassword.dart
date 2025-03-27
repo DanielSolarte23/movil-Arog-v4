@@ -14,7 +14,7 @@ class Restablecerpassword extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 85),
+              const SizedBox(height: 100),
               Image.asset('assets/images/ArogV2.png', height: 120),
               const SizedBox(height: 10),
               const SizedBox(height: 20),
