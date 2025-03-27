@@ -1,7 +1,8 @@
 
-import 'package:arog_movil/views/rutasRecolector.dart';
+import 'package:arog_movil/views/homeAdmin.dart';
+// import 'package:arog_movil/views/rutasRecolector.dart';
 import 'package:flutter/material.dart';
-//import 'package:arog_movil/views/homeAdmin.dart';
+// import 'package:arog_movil/views/homeAdmin.dart';
 // import 'package:arog_movil/views/Restablecerpassword.dart';
 
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'AROG-MOVIL',
-      home: Scaffold(body: RutasRecolector()),
+      home: Scaffold(body: HomeScreen()),
     );
   }
 }

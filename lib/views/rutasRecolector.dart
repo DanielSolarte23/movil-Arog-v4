@@ -1,10 +1,11 @@
+import 'package:arog_movil/views/configuracionCiudadano.dart';
+import 'package:arog_movil/views/perfilCiudadano.dart';
 import 'package:flutter/material.dart';
 
 class RutasRecolector extends StatelessWidget {
   final List<Map<String, dynamic>> menuItems = [
-    {'title': 'Ruta asignada', 'icon': Icons.route},
+    {'title': 'Ruta ', 'icon': Icons.route},
     {'title': 'Historial ruta', 'icon': Icons.assignment},
-    {'title': 'Editar', 'icon': Icons.edit},
   ];
 
   @override
@@ -13,7 +14,12 @@ class RutasRecolector extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.settings, color: Colors.lightGreen),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Configuracion()),
+            );
+          },
         ),
         title: Container(
           height: 40,
@@ -23,10 +29,10 @@ class RutasRecolector extends StatelessWidget {
             border: Border.all(width: 1, color: Colors.grey),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.2), 
-                blurRadius: 8, 
-                spreadRadius: 1, 
-                offset: Offset(4, 4), 
+                color: Colors.black.withOpacity(0.2),
+                blurRadius: 8,
+                spreadRadius: 1,
+                offset: Offset(4, 4),
               ),
             ],
           ),
@@ -45,7 +51,12 @@ class RutasRecolector extends StatelessWidget {
           ),
           IconButton(
             icon: const Icon(Icons.person, color: Colors.lightGreen),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Perfilciudadano()),
+              );
+            },
           ),
         ],
       ),
@@ -55,7 +66,11 @@ class RutasRecolector extends StatelessWidget {
             const SizedBox(height: 20),
             const Text(
               'Rutas',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.normal),
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
             ),
             const SizedBox(height: 20),
             Container(
@@ -65,65 +80,71 @@ class RutasRecolector extends StatelessWidget {
                 color: Colors.grey[100],
                 border: Border.all(width: 2, color: Colors.green),
                 borderRadius: BorderRadius.all(Radius.circular(10)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    blurRadius: 8,
+                    spreadRadius: 1,
+                    offset: Offset(4, 4),
+                  ),
+                ],
                 image: const DecorationImage(
                   image: AssetImage('assets/images/Arog-2.png'),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: menuItems.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
-                  childAspectRatio: 1.3,
-                ),
-                itemBuilder: (context, index) {
-                  return Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      side: BorderSide(
-                        color: Colors.grey.withOpacity(0.3),
-                        width: 1,
+            const SizedBox(height: 40),
+            Center(
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                spacing: 20.0, 
+                runSpacing: 20.0, 
+                children: menuItems.map((item) {
+                  return SizedBox(
+                    width: 120, 
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        side: BorderSide(
+                          color: Colors.grey.withOpacity(0.3),
+                          width: 1,
+                        ),
                       ),
-                    ),
-                    child: InkWell(
-                      onTap: () {},
-                      borderRadius: BorderRadius.circular(8),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            menuItems[index]['icon'],
-                            color: Colors.lightGreen[600],
-                            size: 24,
+                      child: InkWell(
+                        onTap: () {},
+                        borderRadius: BorderRadius.circular(8),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                item['icon'],
+                                color: Colors.lightGreen[600],
+                                size: 30,
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                item['title'],
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
                           ),
-                          const SizedBox(height: 6),
-                          Text(
-                            menuItems[index]['title'],
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 12,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
+                        ),
                       ),
                     ),
                   );
-                },
+                }).toList(),
               ),
             ),
-
-            const SizedBox(height: 20),
+            const SizedBox(height: 40),
             Container(
-              height: 190,
+              height: 260,
               color: const Color.fromARGB(255, 121, 177, 61),
             ),
           ],

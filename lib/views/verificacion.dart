@@ -53,7 +53,7 @@ class VerificationScreen extends StatelessWidget {
                   'Cambiar el Correo',
                   style: TextStyle(
                     color: Colors.green,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ),
@@ -72,7 +72,7 @@ class VerificationScreen extends StatelessWidget {
                   'Verificar',
                   style: TextStyle(
                     fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w500,
                     color: Colors.white,
                   ),
                 ),

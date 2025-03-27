@@ -13,8 +13,7 @@ class Restablecerpassword extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 40),
-
+              const SizedBox(height: 85),
               Image.asset('assets/images/ArogV2.png', height: 120),
               const SizedBox(height: 10),
               const SizedBox(height: 20),
@@ -35,7 +34,7 @@ class Restablecerpassword extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 14, color: Colors.grey),
               ),
-              const SizedBox(height: 5),
+              const SizedBox(height: 35),
 
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
@@ -78,7 +77,7 @@ class Restablecerpassword extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 15),
+              const SizedBox(height: 30),
 
               ElevatedButton(
                 onPressed: () {},
