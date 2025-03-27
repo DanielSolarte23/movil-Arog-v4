@@ -1,4 +1,6 @@
 import 'package:arog_movil/views/configuracionCiudadano.dart';
+import 'package:arog_movil/views/configurarNotificaciones.dart';
+import 'package:arog_movil/views/perfilCiudadano.dart';
 import 'package:flutter/material.dart';
 
 class RutasAdmin extends StatelessWidget {
@@ -47,11 +49,23 @@ class RutasAdmin extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications, color: Colors.lightGreen),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => configurarNotificaciones(),
+                ),
+              );
+            },
           ),
           IconButton(
             icon: const Icon(Icons.person, color: Colors.lightGreen),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Perfilciudadano()),
+              );
+            },
           ),
         ],
       ),
@@ -61,7 +75,11 @@ class RutasAdmin extends StatelessWidget {
           const SizedBox(height: 20),
           const Text(
             'Rutas',
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
           ),
           const SizedBox(height: 20),
           Container(
@@ -71,14 +89,14 @@ class RutasAdmin extends StatelessWidget {
               color: Colors.grey[100],
               border: Border.all(width: 2, color: Colors.green),
               borderRadius: BorderRadius.all(Radius.circular(10)),
-               boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
-                    blurRadius: 8,
-                    spreadRadius: 1,
-                    offset: Offset(4, 4),
-                  ),
-                ],
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2),
+                  blurRadius: 8,
+                  spreadRadius: 1,
+                  offset: Offset(4, 4),
+                ),
+              ],
               image: const DecorationImage(
                 image: AssetImage('assets/images/Arog-2.png'),
                 fit: BoxFit.cover,
