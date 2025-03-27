@@ -1,3 +1,4 @@
+import 'package:arog_movil/views/verificacion.dart';
 import 'package:flutter/material.dart';
 
 class Restablecerpassword extends StatelessWidget {
@@ -80,7 +81,14 @@ class Restablecerpassword extends StatelessWidget {
               const SizedBox(height: 30),
 
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => VerificationScreen(),
+                    ),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.lightGreen[600],
                   padding: const EdgeInsets.symmetric(
@@ -102,7 +110,8 @@ class Restablecerpassword extends StatelessWidget {
               ),
               const SizedBox(height: 15),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blueGrey[100],
                   padding: const EdgeInsets.symmetric(
