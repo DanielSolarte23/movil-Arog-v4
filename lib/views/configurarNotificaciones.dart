@@ -68,7 +68,7 @@ class _ConfigurarNotificacionesState extends State<configurarNotificaciones> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => HomeScreen()),
+                MaterialPageRoute(builder: (context) => HomeAdmin()),
               );
             },
           ),

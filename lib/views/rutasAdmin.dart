@@ -168,7 +168,7 @@ class RutasAdmin extends StatelessWidget {
             ),
           ),
           Container(
-            height: 260,
+            height: 300,
             color: const Color.fromARGB(255, 121, 177, 61),
           ),
         ],

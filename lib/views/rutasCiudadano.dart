@@ -3,10 +3,10 @@ import 'package:arog_movil/views/configurarNotificaciones.dart';
 import 'package:arog_movil/views/perfilCiudadano.dart';
 import 'package:flutter/material.dart';
 
-class RutasRecolector extends StatelessWidget {
+class RutasCiudadano extends StatelessWidget {
   final List<Map<String, dynamic>> menuItems = [
-    {'title': 'Ruta ', 'icon': Icons.route},
-    {'title': 'Historial ruta', 'icon': Icons.assignment},
+    {'title': 'Puntos', 'icon': Icons.pin_drop},
+    {'title': 'Horarios', 'icon': Icons.watch},
   ];
 
   @override

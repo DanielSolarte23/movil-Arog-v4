@@ -60,7 +60,7 @@ class Perfilciudadano extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => HomeScreen()),
+                MaterialPageRoute(builder: (context) => HomeAdmin()),
               );
             },
           ),

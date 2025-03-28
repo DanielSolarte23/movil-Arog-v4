@@ -1,42 +1,32 @@
 import 'package:arog_movil/views/configuracionCiudadano.dart';
 import 'package:arog_movil/views/configurarNotificaciones.dart';
-import 'package:arog_movil/views/encuestasCiudadano.dart';
+//import 'package:arog_movil/views/encuestasCiudadano.dart';
 import 'package:arog_movil/views/perfilCiudadano.dart';
 import 'package:arog_movil/views/rutasAdmin.dart';
 import 'package:flutter/material.dart';
 
-class HomeAdmin extends StatelessWidget {
+class HomeRecolector extends StatelessWidget {
   final List<Map<String, dynamic>> menuItems = [
     {'title': 'Rutas', 'icon': Icons.route, 'route': RutasAdmin()},
     {'title': 'Tareas', 'icon': Icons.assignment, 'route': null},
-    {'title': 'Gestión de usuarios', 'icon': Icons.people_alt, 'route': null},
     {
       'title': 'Registro de incidencias',
       'icon': Icons.app_registration,
       'route': null,
     },
-    {
-      'title': 'Historial de registro',
-      'icon': Icons.history,
-      'route': null,
-    },
-    {'title': 'Pagos', 'icon': Icons.payment, 'route': null},
+    {'title': 'Registro', 'icon': Icons.person, 'route': null},
+    {'title': 'Historial de registro', 'icon': Icons.history, 'route': null},
     {'title': 'Galería', 'icon': Icons.image, 'route': null},
+    {'title': 'Pagos', 'icon': Icons.payment, 'route': null},
     {
-      'title': 'Informes y Certificados',
-      'icon': Icons.info_rounded,
+      'title': 'Informes y certificados',
+      'icon': Icons.notes,
       'route': null,
     },
-    {'title': 'Registros', 'icon': Icons.person, 'route': null},
     {
-      'title': 'Estadísticas y métricas',
+      'title': 'Estedisticas y metricas',
       'icon': Icons.analytics,
       'route': null,
-    },
-    {
-      'title': 'Ver encuestas',
-      'icon': Icons.notes,
-      'route': Encuestasciudadano(),
     },
   ];
 
@@ -122,6 +112,23 @@ class HomeAdmin extends StatelessWidget {
               ),
             ),
           ),
+
+          const SizedBox(height: 30,),
+          Container(
+          child: Column(
+            children: [
+              const Text(
+                'Menu',
+                style: TextStyle(
+                   color: Colors.black, fontWeight: FontWeight.bold, fontSize: 22
+                ),
+                textAlign: TextAlign.center,
+              )
+            ],
+          ),
+          ),
+          const SizedBox(height: 20,),
+
           Expanded(
             child: GridView.builder(
               padding: const EdgeInsets.all(12),

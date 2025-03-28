@@ -1,6 +1,7 @@
 import 'package:arog_movil/views/configuracionCiudadano.dart';
 import 'package:arog_movil/views/configurarNotificaciones.dart';
 import 'package:arog_movil/views/homeAdmin.dart';
+import 'package:arog_movil/views/realizarEncuestasCiudadano.dart';
 import 'package:flutter/material.dart';
 
 class Encuestasciudadano extends StatelessWidget {
@@ -57,7 +58,7 @@ class Encuestasciudadano extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => HomeScreen()),
+                MaterialPageRoute(builder: (context) => HomeAdmin()),
               );
             },
           ),
@@ -126,7 +127,14 @@ class Encuestasciudadano extends StatelessWidget {
         title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
         subtitle: Text(date, style: TextStyle(color: Colors.grey)),
         trailing: TextButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Realizarencuestasciudadano(),
+              ),
+            );
+          },
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: const [
