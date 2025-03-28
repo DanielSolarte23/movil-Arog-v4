@@ -11,6 +11,7 @@ class _MenuState extends State<Menu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white, // Fondo blanco
       body: Padding(
         padding: const EdgeInsets.all(16.0), 
         child: Column(
@@ -33,7 +34,7 @@ class _MenuState extends State<Menu> {
       children: [
         _buildIconButton(Icons.settings, 'Ícono de configuración presionado'),
         SizedBox(width: 16),
-        _buildSearchField(),
+        _buildSearchField(), // Campo de búsqueda con sombra
         SizedBox(width: 16),
         _buildIconButton(Icons.notifications, 'Ícono de notificaciones presionado'),
         SizedBox(width: 16),
@@ -42,28 +43,47 @@ class _MenuState extends State<Menu> {
     );
   }
 
-  // Método para construir el campo de búsqueda
+  // Método para construir el campo de búsqueda con BoxShadow
   Widget _buildSearchField() {
     return Expanded(
-      child: TextField(
-        decoration: InputDecoration(
-          hintText: 'Buscar...',
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.0),
-            borderSide: BorderSide(color: Colors.lightGreen, width: 2),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white, // Fondo blanco
+          borderRadius: BorderRadius.circular(20), // Bordes redondeados
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5), // Color de la sombra
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: Offset(0, 3), // Desplazamiento de la sombra
+            ),
+          ],
+        ),
+        child: TextField(
+          decoration: InputDecoration(
+            hintText: 'Buscar...',
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20.0),
+              borderSide: BorderSide.none, // Sin borde, solo sombra
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20.0),
+              borderSide: BorderSide.none, // Sin borde
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20.0),
+              borderSide: BorderSide(color: Colors.lightGreen, width: 2),
+            ),
+            prefixIcon: Icon(Icons.search),
+            filled: true,
+            fillColor: Colors.white, // Fondo blanco para el input
           ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.0),
-            borderSide: BorderSide(color: Colors.lightGreen, width: 2),
-          ),
-          prefixIcon: Icon(Icons.search),
         ),
       ),
     );
   }
 
-  // Método para construir un iconButton reutilizable
+  // Método para construir un IconButton reutilizable
   Widget _buildIconButton(IconData icon, String logMessage) {
     return IconButton(
       onPressed: () {
