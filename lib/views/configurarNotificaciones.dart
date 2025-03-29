@@ -126,8 +126,8 @@ class _ConfigurarNotificacionesState extends State<configurarNotificaciones> {
                   ),
                 ],
                 image: const DecorationImage(
-                  image: AssetImage('assets/images/ArogV2.png'),
-                  fit: BoxFit.cover,
+                  image: AssetImage('assets/images/Perfil.jpg'),
+                  fit: BoxFit.contain,
                 ),
               ),
             ),

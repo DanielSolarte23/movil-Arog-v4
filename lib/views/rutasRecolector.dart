@@ -154,7 +154,13 @@ class RutasRecolector extends StatelessWidget {
             const SizedBox(height: 40),
             Container(
               height: 300,
-              color: const Color.fromARGB(255, 121, 177, 61),
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 121, 177, 61),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(40.0),
+                  topRight: Radius.circular(40.0),
+                ),
+              ),
             ),
           ],
         ),

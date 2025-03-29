@@ -10,6 +10,431 @@ class RutasAdmin extends StatelessWidget {
     {'title': 'Editar', 'icon': Icons.edit},
   ];
 
+  void _showEditModal(BuildContext context) {
+    final TextEditingController _routeNameController = TextEditingController();
+    final TextEditingController _routeDescriptionController =
+        TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'Editar Ruta',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                TextField(
+                  controller: _routeNameController,
+                  decoration: InputDecoration(
+                    labelText: 'Nombre de la ruta',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    prefixIcon: Icon(Icons.person, color: Colors.lightGreen),
+                  ),
+                ),
+
+                const SizedBox(height: 15),
+                TextField(
+                  controller: _routeNameController,
+                  decoration: InputDecoration(
+                    labelText: 'Fecha hora de inicio',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    prefixIcon: Icon(Icons.watch, color: Colors.lightGreen),
+                  ),
+                ),
+
+                const SizedBox(height: 15),
+                TextField(
+                  controller: _routeNameController,
+                  decoration: InputDecoration(
+                    labelText: 'Usuario asignado',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    prefixIcon: Icon(Icons.person_add, color: Colors.lightGreen),
+                  ),
+                ),
+
+                const SizedBox(height: 15),
+                TextField(
+                  controller: _routeNameController,
+                  decoration: InputDecoration(
+                    labelText: 'Vehiculo',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    prefixIcon: Icon(Icons.car_rental, color: Colors.lightGreen),
+                  ),
+                ),
+
+                const SizedBox(height: 15),
+                TextField(
+                  controller: _routeNameController,
+                  decoration: InputDecoration(
+                    labelText: 'Tipo de formulario',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    prefixIcon: Icon(Icons.note, color: Colors.lightGreen),
+                  ),
+                ),
+
+                const SizedBox(height: 15),
+                TextField(
+                  controller: _routeNameController,
+                  decoration: InputDecoration(
+                    labelText: 'Puntos de recoleccion',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    prefixIcon: Icon(Icons.pin_drop, color: Colors.lightGreen),
+                  ),
+                ),
+                const SizedBox(height: 25),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.grey[300],
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                      child: Text(
+                        'Cancelar',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.lightGreen,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                      child: Text(
+                        'Guardar',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: () {
+                        final newName = _routeNameController.text;
+                        final newDescription = _routeDescriptionController.text;
+
+                        print('Nuevo nombre: $newName');
+                        print('Nueva descripción: $newDescription');
+
+                        Navigator.of(context).pop();
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Ruta actualizada correctamente'),
+                            backgroundColor: Colors.lightGreen,
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _showListarModal(BuildContext context) {
+    final TextEditingController _routeNameController = TextEditingController();
+    final TextEditingController _routeDescriptionController =
+        TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'Editar Ruta',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.lightGreen[800],
+                  ),
+                ),
+                const SizedBox(height: 20),
+                TextField(
+                  controller: _routeNameController,
+                  decoration: InputDecoration(
+                    labelText: 'Nombre de la ruta',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    prefixIcon: Icon(Icons.person, color: Colors.lightGreen),
+                  ),
+                ),
+
+                const SizedBox(height: 20),
+                TextField(
+                  controller: _routeNameController,
+                  decoration: InputDecoration(
+                    labelText: 'Nombre ',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    prefixIcon: Icon(Icons.person, color: Colors.lightGreen),
+                  ),
+                ),
+
+                const SizedBox(height: 15),
+                const SizedBox(height: 25),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.grey[300],
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                      child: Text(
+                        'Cancelar',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.lightGreen,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                      child: Text(
+                        'Guardar',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: () {
+                        final newName = _routeNameController.text;
+                        final newDescription = _routeDescriptionController.text;
+
+                        print('Nuevo nombre: $newName');
+                        print('Nueva descripción: $newDescription');
+
+                        Navigator.of(context).pop();
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Ruta actualizada correctamente'),
+                            backgroundColor: Colors.lightGreen,
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _showNuevaRutaModal(BuildContext context) {
+    final TextEditingController _routeNameController = TextEditingController();
+    final TextEditingController _routeDescriptionController =
+        TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'Agregar nueva ruta',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                TextField(
+                  controller: _routeNameController,
+                  decoration: InputDecoration(
+                    labelText: 'Nombre de la ruta',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    prefixIcon: Icon(Icons.person, color: Colors.lightGreen),
+                  ),
+                ),
+
+                const SizedBox(height: 20),
+                TextField(
+                  controller: _routeNameController,
+                  decoration: InputDecoration(
+                    labelText: 'Hora de inicio',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    prefixIcon: Icon(Icons.watch, color: Colors.lightGreen),
+                  ),
+                ),
+
+                const SizedBox(height: 15),
+                TextField(
+                  controller: _routeNameController,
+                  decoration: InputDecoration(
+                    labelText: 'Usuario asignado',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    prefixIcon: Icon(Icons.route, color: Colors.lightGreen),
+                  ),
+                ),
+                const SizedBox(height: 15),
+                TextField(
+                  controller: _routeNameController,
+                  decoration: InputDecoration(
+                    labelText: 'Vehiculo',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    prefixIcon: Icon(
+                      Icons.car_rental,
+                      color: Colors.lightGreen,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 15),
+                TextField(
+                  controller: _routeNameController,
+                  decoration: InputDecoration(
+                    labelText: 'Tipo de formulario',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    prefixIcon: Icon(Icons.note, color: Colors.lightGreen),
+                  ),
+                ),
+                const SizedBox(height: 15),
+                TextField(
+                  controller: _routeNameController,
+                  decoration: InputDecoration(
+                    labelText: 'Hora de inicio',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    prefixIcon: Icon(Icons.start, color: Colors.lightGreen),
+                  ),
+                ),
+                const SizedBox(height: 15),
+                TextField(
+                  controller: _routeNameController,
+                  decoration: InputDecoration(
+                    labelText: 'Puntos de recoleccion',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    prefixIcon: Icon(Icons.pin_drop, color: Colors.lightGreen),
+                  ),
+                ),
+
+                const SizedBox(height: 25),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.grey[300],
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                      child: Text(
+                        'Cancelar',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.lightGreen,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                      child: Text(
+                        'Guardar',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: () {
+                        final newName = _routeNameController.text;
+                        final newDescription = _routeDescriptionController.text;
+
+                        print('Nuevo nombre: $newName');
+                        print('Nueva descripción: $newDescription');
+
+                        Navigator.of(context).pop();
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Ruta actualizada correctamente'),
+                            backgroundColor: Colors.lightGreen,
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -115,6 +540,20 @@ class RutasAdmin extends StatelessWidget {
                 childAspectRatio: 1.3,
               ),
               itemBuilder: (context, index) {
+                void handleItemTap() {
+                  switch (menuItems[index]['title']) {
+                    case 'Nueva ruta':
+                      _showNuevaRutaModal(context);
+                      break;
+                    case 'Listar':
+                      _showListarModal(context);
+                      break;
+                    case 'Editar':
+                      _showEditModal(context);
+                      break;
+                  }
+                }
+
                 return Card(
                   margin: const EdgeInsets.symmetric(
                     horizontal: 2,
@@ -128,7 +567,7 @@ class RutasAdmin extends StatelessWidget {
                     ),
                   ),
                   child: InkWell(
-                    onTap: () {},
+                    onTap: handleItemTap,
                     borderRadius: BorderRadius.circular(8),
                     child: Container(
                       decoration: BoxDecoration(
@@ -169,7 +608,13 @@ class RutasAdmin extends StatelessWidget {
           ),
           Container(
             height: 300,
-            color: const Color.fromARGB(255, 121, 177, 61),
+            decoration: BoxDecoration(
+              color: const Color.fromARGB(255, 121, 177, 61),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(40.0),
+                topRight: Radius.circular(40.0),
+              ),
+            ),
           ),
         ],
       ),
