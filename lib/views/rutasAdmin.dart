@@ -1,5 +1,6 @@
 import 'package:arog_movil/views/configuracionCiudadano.dart';
 import 'package:arog_movil/views/configurarNotificaciones.dart';
+import 'package:arog_movil/views/homeAdmin.dart';
 import 'package:arog_movil/views/perfilCiudadano.dart';
 import 'package:flutter/material.dart';
 
@@ -67,7 +68,10 @@ class RutasAdmin extends StatelessWidget {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    prefixIcon: Icon(Icons.person_add, color: Colors.lightGreen),
+                    prefixIcon: Icon(
+                      Icons.person_add,
+                      color: Colors.lightGreen,
+                    ),
                   ),
                 ),
 
@@ -79,7 +83,10 @@ class RutasAdmin extends StatelessWidget {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    prefixIcon: Icon(Icons.car_rental, color: Colors.lightGreen),
+                    prefixIcon: Icon(
+                      Icons.car_rental,
+                      color: Colors.lightGreen,
+                    ),
                   ),
                 ),
 
@@ -106,6 +113,16 @@ class RutasAdmin extends StatelessWidget {
                     prefixIcon: Icon(Icons.pin_drop, color: Colors.lightGreen),
                   ),
                 ),
+                const SizedBox(height: 10),
+
+                ListTile(
+                  leading: const Icon(Icons.delete, color: Colors.redAccent),
+                ),
+        
+                ListTile(
+                  leading: const Icon(Icons.add, color: Color.fromARGB(255, 108, 156, 53)),
+                ),
+
                 const SizedBox(height: 25),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -127,7 +144,12 @@ class RutasAdmin extends StatelessWidget {
                     ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.lightGreen,
+                        backgroundColor: const Color.fromARGB(
+                          255,
+                          123,
+                          179,
+                          59,
+                        ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
@@ -234,7 +256,12 @@ class RutasAdmin extends StatelessWidget {
                     ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.lightGreen,
+                        backgroundColor: const Color.fromARGB(
+                          255,
+                          123,
+                          179,
+                          59,
+                        ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
@@ -255,7 +282,12 @@ class RutasAdmin extends StatelessWidget {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text('Ruta actualizada correctamente'),
-                            backgroundColor: Colors.lightGreen,
+                            backgroundColor: const Color.fromARGB(
+                              255,
+                              123,
+                              179,
+                              59,
+                            ),
                           ),
                         );
                       },
@@ -399,7 +431,12 @@ class RutasAdmin extends StatelessWidget {
                     ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.lightGreen,
+                        backgroundColor: const Color.fromARGB(
+                          255,
+                          123,
+                          179,
+                          59,
+                        ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
@@ -420,7 +457,12 @@ class RutasAdmin extends StatelessWidget {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text('Ruta actualizada correctamente'),
-                            backgroundColor: Colors.lightGreen,
+                            backgroundColor: const Color.fromARGB(
+                              255,
+                              123,
+                              179,
+                              59,
+                            ),
                           ),
                         );
                       },
@@ -489,6 +531,15 @@ class RutasAdmin extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => Perfilciudadano()),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.home, color: Colors.lightGreen),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomeAdmin()),
               );
             },
           ),
