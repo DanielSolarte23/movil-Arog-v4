@@ -1,27 +1,25 @@
 import 'package:arog_movil/views/configuracionCiudadano.dart';
 import 'package:arog_movil/views/configurarNotificaciones.dart';
 import 'package:arog_movil/views/encuestasCiudadano.dart';
+import 'package:arog_movil/views/galeriaAdmin.dart';
 import 'package:arog_movil/views/perfilCiudadano.dart';
 import 'package:arog_movil/views/rutasAdmin.dart';
+import 'package:arog_movil/views/tareasAdmin.dart';
 import 'package:flutter/material.dart';
 
 class HomeAdmin extends StatelessWidget {
   final List<Map<String, dynamic>> menuItems = [
     {'title': 'Rutas', 'icon': Icons.route, 'route': RutasAdmin()},
-    {'title': 'Tareas', 'icon': Icons.assignment, 'route': null},
+    {'title': 'Tareas', 'icon': Icons.assignment, 'route': Tareasadmin()},
     {'title': 'Gestión de usuarios', 'icon': Icons.people_alt, 'route': null},
     {
       'title': 'Registro de incidencias',
       'icon': Icons.app_registration,
       'route': null,
     },
-    {
-      'title': 'Historial de registro',
-      'icon': Icons.history,
-      'route': null,
-    },
+    {'title': 'Historial de registro', 'icon': Icons.history, 'route': null},
     {'title': 'Pagos', 'icon': Icons.payment, 'route': null},
-    {'title': 'Galería', 'icon': Icons.image, 'route': null},
+    {'title': 'Galería', 'icon': Icons.image, 'route': Galeriaadmin()},
     {
       'title': 'Informes y Certificados',
       'icon': Icons.info_rounded,
