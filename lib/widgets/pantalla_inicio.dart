@@ -22,6 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void _navigateToHome() async {
     await Future.delayed(const Duration(seconds: 3)); 
+    // ignore: use_build_context_synchronously
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => HomeAdmin()));
   }
 
@@ -32,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: AnimatedOpacity(
           opacity: _opacity,
           duration: const Duration(seconds: 2), 
-          child: Image.asset('assets/images/ArogV2.png', width: 200),
+          child: Image.asset('assets/images/ArogV2.png', width: 200, height: 200),
         ),
       ),
     );
