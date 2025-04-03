@@ -2,15 +2,27 @@ import 'package:arog_movil/views/configuracionCiudadano.dart';
 import 'package:arog_movil/views/configurarNotificaciones.dart';
 import 'package:arog_movil/views/perfilCiudadano.dart';
 import 'package:flutter/material.dart';
+import 'package:table_calendar/table_calendar.dart';
 
-class RutasCiudadano extends StatelessWidget {
-  final List<Map<String, dynamic>> menuItems = [
-    {'title': 'Puntos', 'icon': Icons.pin_drop},
-    {'title': 'Horarios', 'icon': Icons.watch},
-  ];
+class RutasCiudadano extends StatefulWidget {
+  @override
+  _RutasCiudadanoState createState() => _RutasCiudadanoState();
+}
+
+class _RutasCiudadanoState extends State<RutasCiudadano> {
+  bool _showCalendar = false;
+  DateTime _focusedDay = DateTime.now();
+  DateTime? _selectedDay;
+
+  List<DateTime> _generateWeekDays() {
+    DateTime today = DateTime.now();
+    return List.generate(7, (index) => today.add(Duration(days: index - 3)));
+  }
 
   @override
   Widget build(BuildContext context) {
+    List<DateTime> days = _generateWeekDays();
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -80,91 +92,112 @@ class RutasCiudadano extends StatelessWidget {
                 color: Colors.black,
               ),
             ),
-            const SizedBox(height: 20),
-            Container(
-              height: 250,
-              width: 270,
-              decoration: BoxDecoration(
-                color: Colors.grey[100],
-                border: Border.all(width: 2, color: Colors.green),
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
-                    blurRadius: 8,
-                    spreadRadius: 1,
-                    offset: Offset(4, 4),
+            const SizedBox(height: 80),
+
+            SizedBox(
+              width: 300,
+              height: 80,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: days.length,
+                itemBuilder: (context, index) {
+                  DateTime day = days[index];
+                  bool isSelected =
+                      _selectedDay?.day == day.day &&
+                      _selectedDay?.month == day.month &&
+                      _selectedDay?.year == day.year;
+
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _selectedDay = day;
+                        _focusedDay = day;
+                        _showCalendar = true;
+                      });
+                    },
+                    child: Container(
+                      width: 60,
+                      margin: EdgeInsets.symmetric(horizontal: 5),
+                      decoration: BoxDecoration(
+                        color:
+                            isSelected
+                                ? Colors.lightGreen[600]
+                                : const Color.fromARGB(255, 209, 207, 207),
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.green, width: 2.0),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            '${day.day}',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: isSelected ? Colors.white : Colors.black,
+                            ),
+                          ),
+                          Text(
+                            _getWeekdayName(day.weekday),
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: isSelected ? Colors.white : Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+
+            const SizedBox(height: 40),
+
+            if (_showCalendar)
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TableCalendar(
+                  firstDay: DateTime.utc(2020, 1, 1),
+                  lastDay: DateTime.utc(2030, 12, 31),
+                  focusedDay: _focusedDay,
+                  selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+                  onDaySelected: (selectedDay, focusedDay) {
+                    setState(() {
+                      _selectedDay = selectedDay;
+                      _focusedDay = focusedDay;
+                    });
+                  },
+                  calendarStyle: CalendarStyle(
+                    todayDecoration: BoxDecoration(
+                      color: Colors.lightGreen,
+                      shape: BoxShape.circle,
+                    ),
+                    selectedDecoration: BoxDecoration(
+                      color: Colors.lightGreen[800],
+                      shape: BoxShape.circle,
+                    ),
                   ),
-                ],
-                image: const DecorationImage(
-                  image: AssetImage('assets/images/Arog-2.png'),
-                  fit: BoxFit.cover,
                 ),
               ),
-            ),
+
             const SizedBox(height: 40),
-            Center(
-              child: Wrap(
-                alignment: WrapAlignment.center,
-                spacing: 20.0,
-                runSpacing: 20.0,
-                children:
-                    menuItems.map((item) {
-                      return SizedBox(
-                        width: 120,
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            side: BorderSide(
-                              color: Colors.grey.withOpacity(0.3),
-                              width: 1,
-                            ),
-                          ),
-                          child: InkWell(
-                            onTap: () {},
-                            borderRadius: BorderRadius.circular(8),
-                            child: Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    item['icon'],
-                                    color: Colors.lightGreen[600],
-                                    size: 30,
-                                  ),
-                                  const SizedBox(height: 8),
-                                  Text(
-                                    item['title'],
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 14,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
-                    }).toList(),
-              ),
-            ),
-            const SizedBox(height: 40),
-            Container(
-              height: 300,
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 121, 177, 61),
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(40.0),
-                  topRight: Radius.circular(40.0),
-                ),
-              ),
-            ),
           ],
         ),
       ),
     );
+  }
+
+  String _getWeekdayName(int weekday) {
+    const List<String> weekdays = [
+      'Dom',
+      'Lun',
+      'Mar',
+      'Mié',
+      'Jue',
+      'Vie',
+      'Sáb',
+    ];
+    return weekdays[weekday % 7];
   }
 }

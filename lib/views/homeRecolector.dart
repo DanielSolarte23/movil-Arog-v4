@@ -2,12 +2,13 @@ import 'package:arog_movil/views/configuracionCiudadano.dart';
 import 'package:arog_movil/views/configurarNotificaciones.dart';
 //import 'package:arog_movil/views/encuestasCiudadano.dart';
 import 'package:arog_movil/views/perfilCiudadano.dart';
-import 'package:arog_movil/views/rutasAdmin.dart';
+
+import 'package:arog_movil/views/rutasRecolector.dart';
 import 'package:flutter/material.dart';
 
 class HomeRecolector extends StatelessWidget {
   final List<Map<String, dynamic>> menuItems = [
-    {'title': 'Rutas', 'icon': Icons.route, 'route': RutasAdmin()},
+    {'title': 'Rutas', 'icon': Icons.route, 'route': RutasRecolector()},
     {'title': 'Tareas', 'icon': Icons.assignment, 'route': null},
     {
       'title': 'Registro de incidencias',
@@ -15,14 +16,10 @@ class HomeRecolector extends StatelessWidget {
       'route': null,
     },
     {'title': 'Registro', 'icon': Icons.person, 'route': null},
-    {'title': 'Historial de registro', 'icon': Icons.history, 'route': null},
+    {'title': 'Historial de registro', 'icon': Icons.history},
     {'title': 'Galería', 'icon': Icons.image, 'route': null},
     {'title': 'Pagos', 'icon': Icons.payment, 'route': null},
-    {
-      'title': 'Informes y certificados',
-      'icon': Icons.notes,
-      'route': null,
-    },
+    {'title': 'Informes y certificados', 'icon': Icons.notes, 'route': null},
     {
       'title': 'Estedisticas y metricas',
       'icon': Icons.analytics,
@@ -113,21 +110,23 @@ class HomeRecolector extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 30,),
+          const SizedBox(height: 30),
           Container(
-          child: Column(
-            children: [
-              const Text(
-                'Menu',
-                style: TextStyle(
-                   color: Colors.black, fontWeight: FontWeight.bold, fontSize: 22
+            child: Column(
+              children: [
+                const Text(
+                  'Menu',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
-              )
-            ],
+              ],
+            ),
           ),
-          ),
-          const SizedBox(height: 20,),
+          const SizedBox(height: 20),
 
           Expanded(
             child: GridView.builder(
@@ -185,6 +184,7 @@ class HomeRecolector extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 8),
                             child: Text(
                               menuItems[index]['title'],
+
                               style: const TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 12,

@@ -1,12 +1,17 @@
 import 'package:arog_movil/views/configuracionCiudadano.dart';
 import 'package:arog_movil/views/configurarNotificaciones.dart';
 import 'package:arog_movil/views/perfilCiudadano.dart';
+import 'package:arog_movil/views/rutasAsignadasRecolector.dart';
 import 'package:flutter/material.dart';
 
 class RutasRecolector extends StatelessWidget {
   final List<Map<String, dynamic>> menuItems = [
-    {'title': 'Ruta ', 'icon': Icons.route},
-    {'title': 'Historial ruta', 'icon': Icons.assignment},
+    {
+      'title': 'Rutas',
+      'icon': Icons.route,
+      'route': RutasAsignadasRecolector(),
+    },
+    {'title': 'Historial ruta', 'icon': Icons.assignment, 'route': null},
   ];
 
   @override
@@ -121,7 +126,16 @@ class RutasRecolector extends StatelessWidget {
                             ),
                           ),
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              if (item['route'] != null) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => item['route'],
+                                  ),
+                                );
+                              }
+                            },
                             borderRadius: BorderRadius.circular(8),
                             child: Padding(
                               padding: const EdgeInsets.all(12.0),

@@ -1,11 +1,10 @@
 import 'package:arog_movil/views/configuracionCiudadano.dart';
 import 'package:arog_movil/views/configurarNotificaciones.dart';
 import 'package:arog_movil/views/perfilCiudadano.dart';
-import 'package:arog_movil/views/realizarEncuestasCiudadano.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class Encuestasciudadano extends StatelessWidget {
+class RutasAsignadasRecolector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,35 +71,35 @@ class Encuestasciudadano extends StatelessWidget {
             children: [
               const SizedBox(height: 40),
               const Text(
-                'Encuestas disponibles',
+                'Rutas asignadas',
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 40),
               _buildSurveyCard(
                 context,
-                title: 'Datos generales',
+                title: 'Plaza central',
                 date: '11/03/2025',
-                icon: Icons.note_rounded,
+                icon: Icons.pin_drop,
               ),
               const SizedBox(height: 23),
               _buildSurveyCard(
                 context,
-                title: 'Opiniones y practicas',
+                title: 'Parque',
                 date: '15/03/2025',
-                icon: Icons.question_answer,
+                icon: Icons.pin_drop,
               ),
               const SizedBox(height: 23),
               _buildSurveyCard(
                 context,
-                title: '¿Como manejan los residuos?',
+                title: 'Mercado viejo',
                 date: '18/03/2025',
-                icon: Icons.delete,
+                icon: Icons.pin_drop,
               ),
               const SizedBox(height: 23),
               _buildSurveyCard(
                 context,
-                title: 'Cuentanos como reciclas',
+                title: 'Esmeralda',
                 date: '20/03/2025',
                 icon: Icons.pin_drop,
               ),
@@ -127,14 +126,7 @@ class Encuestasciudadano extends StatelessWidget {
       margin: const EdgeInsets.all(12),
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => Realizarencuestasciudadano(),
-            ),
-          );
-        },
+        onTap: () {},
         splashColor: Colors.lightGreen.withOpacity(0.1),
         hoverColor: Colors.lightGreen.withOpacity(0.05),
         child: Padding(
@@ -170,16 +162,21 @@ class Encuestasciudadano extends StatelessWidget {
             subtitle: Padding(
               padding: const EdgeInsets.only(top: 4.0),
               child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: const [
-                  Text(
-                    ' Click para Realizar Encuesta',
-                    style: TextStyle(color: Colors.lightGreen),
-                  ),
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
                   Icon(
-                    Icons.arrow_forward_ios,
+                    Icons.verified_user,
+                    color: Colors.lightGreen.shade700,
                     size: 16,
-                    color: Colors.lightGreen,
+                  ),
+                  const SizedBox(width: 10),
+                  Text(
+                    'Usuario',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey.shade700,
+                      fontSize: 14,
+                    ),
                   ),
                 ],
               ),
