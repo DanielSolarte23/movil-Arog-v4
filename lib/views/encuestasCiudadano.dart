@@ -1,5 +1,6 @@
 import 'package:arog_movil/views/configuracionCiudadano.dart';
 import 'package:arog_movil/views/configurarNotificaciones.dart';
+import 'package:arog_movil/views/homeAdmin.dart';
 import 'package:arog_movil/views/perfilCiudadano.dart';
 import 'package:arog_movil/views/realizarEncuestasCiudadano.dart';
 import 'package:flutter/material.dart';
@@ -60,6 +61,16 @@ class Encuestasciudadano extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => Perfilciudadano()),
+              );
+            },
+          ),
+
+          IconButton(
+            icon: const Icon(Icons.home, color: Colors.lightGreen),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomeAdmin()),
               );
             },
           ),

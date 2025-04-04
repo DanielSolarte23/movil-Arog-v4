@@ -119,7 +119,7 @@ class RutasRecolector extends StatelessWidget {
                         width: 120,
                         child: Card(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(15),
                             side: BorderSide(
                               color: Colors.grey.withOpacity(0.3),
                               width: 1,
