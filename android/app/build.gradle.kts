@@ -6,10 +6,13 @@ plugins {
 }
 
 android {
+     
     namespace = "com.example.arog_movil"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
+    
+}
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11

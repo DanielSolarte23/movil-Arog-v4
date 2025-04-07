@@ -1,4 +1,6 @@
- b   import 'package:flutter/material.dart';
+import 'package:arog_movil/views/GaleriaAdmin.dart';
+import 'package:arog_movil/views/GaleriaRecolector.dart';
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +17,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: const MyApp(),
+      home: const Galeriarecolector (),
     );
   }
 }
+
+

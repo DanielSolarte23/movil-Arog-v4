@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:image_downloader/image_downloader.dart'; // Added image_downloader import
+import 'dart:io';
 
 void main() {
   runApp(const MyApp());
@@ -16,27 +19,61 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: const GalleryScreen(),
+      home: const Galeriarecolector(),
     );
   }
 }
 
-class GalleryScreen extends StatefulWidget {
-  const GalleryScreen({super.key});
+class Galeriarecolector extends StatefulWidget {
+  const Galeriarecolector({super.key});
 
   @override
-  _GalleryScreenState createState() => _GalleryScreenState();
+  _GaleriarecolectorState createState() => _GaleriarecolectorState();
 }
 
-class _GalleryScreenState extends State<GalleryScreen> {
+class _GaleriarecolectorState extends State<Galeriarecolector> {
   final List<Map<String, dynamic>> images = List.generate(20, (index) {
     DateTime date = DateTime.now().subtract(Duration(days: index * 10));
     return {
       "url": "https://picsum.photos/400/600?random=${index + 1}",
       "date": date,
       "formattedDate": DateFormat('yyyy-MM-dd').format(date),
+      "isLocal": false,
     };
   });
+
+  final ImagePicker _picker = ImagePicker();
+
+  // Added download image function
+  Future<void> _downloadImage(String imageUrl) async {
+    try {
+      var imageId = await ImageDownloader.downloadImage(imageUrl);
+      if (imageId == null) return;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Imagen descargada con éxito")),
+      );
+    } catch (error) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Error al descargar: $error")),
+      );
+    }
+  }
+
+  Future<void> _pickImage(ImageSource source) async {
+    final XFile? image = await _picker.pickImage(source: source);
+    if (image != null) {
+      setState(() {
+        DateTime date = DateTime.now();
+        images.add({
+          "url": image.path,
+          "date": date,
+          "formattedDate": DateFormat('yyyy-MM-dd').format(date),
+          "isLocal": true,
+        });
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +105,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
                 color: Colors.black.withOpacity(0.2),
                 blurRadius: 8,
                 spreadRadius: 1,
-                offset: Offset(4, 4),
+                offset: const Offset(4, 4),
               ),
             ],
           ),
@@ -83,11 +120,23 @@ class _GalleryScreenState extends State<GalleryScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications, color: Colors.lightGreen),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => configurarNotificaciones(),
+                ),
+              );
+            },
           ),
           IconButton(
             icon: const Icon(Icons.person, color: Colors.lightGreen),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Perfilciudadano()),
+              );
+            },
           ),
         ],
       ),
@@ -132,26 +181,65 @@ class _GalleryScreenState extends State<GalleryScreen> {
           ),
         ),
       ),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            heroTag: 'camera',
+            backgroundColor: Colors.white,
+            child: const Icon(Icons.camera_alt, color: Colors.green),
+            onPressed: () => _pickImage(ImageSource.camera),
+          ),
+          const SizedBox(height: 10),
+          FloatingActionButton(
+            heroTag: 'gallery',
+            backgroundColor: Colors.white,
+            child: const Icon(Icons.photo_library, color: Colors.green),
+            onPressed: () => _pickImage(ImageSource.gallery),
+          ),
+        ],
+      ),
     );
   }
 
   Widget _buildImageCard(BuildContext context, Map<String, dynamic> image) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ImageDetailsScreen(image: image),
+          ),
+        );
+      },
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),
         child: Stack(
           children: [
-            Image.network(
-              image["url"],
-              fit: BoxFit.cover,
-              width: double.infinity,
-              height: double.infinity,
-            ),
+            image["isLocal"]
+                ? Image.file(File(image["url"]), fit: BoxFit.cover, width: double.infinity, height: double.infinity)
+                : Image.network(image["url"], fit: BoxFit.cover, width: double.infinity, height: double.infinity),
             Positioned(
               top: 5,
               right: 5,
               child: _buildPopupMenu(context, image),
+            ),
+            // Added download button
+            Positioned(
+              bottom: 5,
+              right: 5,
+              child: IconButton(
+                icon: const Icon(Icons.download, color: Colors.white),
+                onPressed: () {
+                  if (!image["isLocal"]) {
+                    _downloadImage(image["url"]);
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("No se puede descargar imágenes locales")),
+                    );
+                  }
+                },
+              ),
             ),
           ],
         ),
@@ -175,26 +263,98 @@ class _GalleryScreenState extends State<GalleryScreen> {
       },
       itemBuilder: (BuildContext context) {
         return [
-          const PopupMenuItem(
-            value: 'date',
-            child: Text('Ver fecha'),
-          ),
-          const PopupMenuItem(
-            value: 'delete',
-            child: Text('Eliminar'),
-          ),
+          const PopupMenuItem(value: 'date', child: Text('Ver fecha')),
+          const PopupMenuItem(value: 'delete', child: Text('Eliminar')),
         ];
       },
     );
   }
 }
 
+class ImageDetailsScreen extends StatelessWidget {
+  final Map<String, dynamic> image;
+
+  const ImageDetailsScreen({super.key, required this.image});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Detalles de la Imagen')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(
+              child: image["isLocal"]
+                  ? Image.file(File(image["url"]), fit: BoxFit.contain)
+                  : Image.network(image["url"], fit: BoxFit.contain),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                "Fecha: ${image["formattedDate"]}",
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+            ),
+            // Added download button in details view
+            if (!image["isLocal"])
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20.0),
+                child: ElevatedButton.icon(
+                  icon: const Icon(Icons.download),
+                  label: const Text("Descargar"),
+                  onPressed: () async {
+                    try {
+                      var imageId = await ImageDownloader.downloadImage(image["url"]);
+                      if (imageId == null) return;
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("Imagen descargada con éxito")),
+                      );
+                    } catch (error) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text("Error al descargar: $error")),
+                      );
+                    }
+                  },
+                ),
+              ),
+            const SizedBox(height: 20),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// Pantallas de ejemplo para navegación
+
 class Configuracion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Configuración')),
-      body: Center(child: Text('Pantalla de Configuración')),
+      appBar: AppBar(title: const Text('Configuración')),
+      body: const Center(child: Text('Pantalla de Configuración')),
+    );
+  }
+}
+
+class configurarNotificaciones extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Notificaciones')),
+      body: const Center(child: Text('Pantalla de Notificaciones')),
+    );
+  }
+}
+
+class Perfilciudadano extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Perfil')),
+      body: const Center(child: Text('Pantalla de Perfil')),
     );
   }
 }
