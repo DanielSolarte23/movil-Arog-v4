@@ -1,7 +1,7 @@
+
 import 'package:arog_movil/views/ciudadano/configuracionCiudadano.dart';
 import 'package:arog_movil/views/notificaciones/configurarNotificaciones.dart';
 import 'package:arog_movil/views/administrador/homeAdmin.dart';
-import 'package:arog_movil/views/recolector/rutasRecolector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -82,9 +82,7 @@ class PerfilGestionAdmin extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => RutasRecolector(),
-                        ),
+                        MaterialPageRoute(builder: (context) => HomeAdmin()),
                       );
                     },
                   ),
@@ -113,43 +111,95 @@ class PerfilGestionAdmin extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 50),
+            const SizedBox(height: 30),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: 280,
-                  height: 280,
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.green),
-                  ),
-
+                const SizedBox(height: 25),
+                Center(
                   child: Text(
                     'Usuario',
                     style: TextStyle(
+                      fontSize: 26,
                       color: Colors.black,
-                      fontSize: 22,
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
                   ),
                 ),
-                Container(
-                  width: 280,
-                  height: 280,
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.green),
-                  ),
-
-                  child: Text(
-                    'Usuario',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
+                const SizedBox(height: 30),
+                Divider(
+                  color: Colors.grey,
+                  height: 10,
+                  indent: 20,
+                  endIndent: 20,
+                ),
+                const SizedBox(height: 50),
+                Padding(
+                  padding: const EdgeInsets.only(left: 30),
+                  child: RichText(
+                    text: TextSpan(
+                      style: TextStyle(fontSize: 18, color: Colors.black),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: 'Correo electronico:   ',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        TextSpan(
+                          text: 'usuario@gmail.com',
+                          style: TextStyle(
+                            color: const Color.fromARGB(255, 96, 96, 97),
+                          ),
+                        ),
+                      ],
                     ),
-                    textAlign: TextAlign.center,
                   ),
                 ),
+                const SizedBox(height: 10),
+
+                Padding(
+                  padding: const EdgeInsets.only(left: 30),
+                  child: RichText(
+                    text: TextSpan(
+                      style: TextStyle(fontSize: 18, color: Colors.black),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: 'Fecha de nacimiento:  ',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        TextSpan(
+                          text: '20/07/2004',
+                          style: TextStyle(
+                            color: const Color.fromARGB(255, 96, 96, 97),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.only(left: 30),
+                  child: RichText(
+                    text: TextSpan(
+                      style: TextStyle(fontSize: 18, color: Colors.black),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: 'Telefono:   ',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        TextSpan(
+                          text: '535345433',
+                          style: TextStyle(
+                            color: const Color.fromARGB(255, 96, 96, 97),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
               ],
             ),
           ],

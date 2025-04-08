@@ -1,3 +1,4 @@
+import 'package:arog_movil/views/administrador/homeAdmin.dart';
 import 'package:arog_movil/views/ciudadano/configuracionCiudadano.dart';
 import 'package:arog_movil/views/notificaciones/configurarNotificaciones.dart';
 import 'package:arog_movil/views/ciudadano/perfilCiudadano.dart';
@@ -60,6 +61,16 @@ class GestionUseradmin extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => Perfilciudadano()),
+              );
+            },
+          ),
+
+          IconButton(
+            icon: const Icon(Icons.home, color: Colors.lightGreen),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomeAdmin()),
               );
             },
           ),

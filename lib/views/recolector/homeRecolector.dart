@@ -145,10 +145,10 @@ class HomeRecolector extends StatelessWidget {
                     vertical: 4,
                   ),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4),
+                    borderRadius: BorderRadius.circular(15),
                     side: BorderSide(
                       color: Colors.grey.withOpacity(0.3),
-                      width: 1,
+                      width: 0.5,
                     ),
                   ),
                   child: InkWell(
@@ -165,7 +165,7 @@ class HomeRecolector extends StatelessWidget {
                     borderRadius: BorderRadius.circular(4),
                     child: Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4),
+                        borderRadius: BorderRadius.circular(15),
                         border: Border.all(
                           color: Colors.green.withOpacity(0.2),
                           width: 0.5,

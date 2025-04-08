@@ -611,7 +611,7 @@ class RutasAdmin extends StatelessWidget {
                     vertical: 2,
                   ),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4),
+                    borderRadius: BorderRadius.circular(15),
                     side: BorderSide(
                       color: Colors.grey.withOpacity(0.3),
                       width: 1,
@@ -619,7 +619,7 @@ class RutasAdmin extends StatelessWidget {
                   ),
                   child: InkWell(
                     onTap: handleItemTap,
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(15),
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(4),
