@@ -187,7 +187,7 @@ class _GaleriaAdminState extends State<GaleriaAdmin> {
       },
     );
   }
-}
+}  
 
 class Configuracion extends StatelessWidget {
   @override
