@@ -26,24 +26,14 @@ flutter_native_splash:
   ios: true
 
 flutter:
-<<<<<<< HEAD
-  assets:
-    - assets/images/logo_arog.png
-
-
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
-
-=======
   uses-material-design: true
->>>>>>> 5093a864067e9fde473d2318e4a0e85c001aaee0
 
   assets:
     - assets/images/ArogV2.png
     - assets/images/Arog-1.png
     - assets/images/Arog-2.png
     - assets/images/Perfil.jpg
+    - assets/images/logo_arog.png
 
   # Splash screen configuration
   # Optional additional parameters you might want to add:
