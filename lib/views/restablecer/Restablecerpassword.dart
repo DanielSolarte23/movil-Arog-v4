@@ -1,5 +1,5 @@
-import 'package:arog_movil/views/perfilCiudadano.dart';
-import 'package:arog_movil/views/verificacion.dart';
+import 'package:arog_movil/views/ciudadano/perfilCiudadano.dart';
+import 'package:arog_movil/views/restablecer/verificacion.dart';
 import 'package:flutter/material.dart';
 
 class Restablecerpassword extends StatelessWidget {

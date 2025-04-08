@@ -1,5 +1,5 @@
-import 'package:arog_movil/views/perfilCiudadano.dart';
-import 'package:arog_movil/views/rutasRecolector.dart';
+import 'package:arog_movil/views/ciudadano/perfilCiudadano.dart';
+import 'package:arog_movil/views/recolector/rutasRecolector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 

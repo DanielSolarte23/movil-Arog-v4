@@ -1,4 +1,4 @@
-import 'package:arog_movil/views/homeAdmin.dart';
+import 'package:arog_movil/views/administrador/homeAdmin.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {

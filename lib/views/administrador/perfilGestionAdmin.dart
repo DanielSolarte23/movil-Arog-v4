@@ -1,7 +1,7 @@
-import 'package:arog_movil/views/configuracionCiudadano.dart';
-import 'package:arog_movil/views/configurarNotificaciones.dart';
-import 'package:arog_movil/views/homeAdmin.dart';
-import 'package:arog_movil/views/rutasRecolector.dart';
+import 'package:arog_movil/views/ciudadano/configuracionCiudadano.dart';
+import 'package:arog_movil/views/notificaciones/configurarNotificaciones.dart';
+import 'package:arog_movil/views/administrador/homeAdmin.dart';
+import 'package:arog_movil/views/recolector/rutasRecolector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 

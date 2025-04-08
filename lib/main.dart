@@ -1,4 +1,4 @@
-import 'package:arog_movil/views/homeAdmin.dart';
+import 'package:arog_movil/views/administrador/homeAdmin.dart';
 import 'package:arog_movil/widgets/pantalla_inicio.dart';
 import 'package:flutter/material.dart';
 

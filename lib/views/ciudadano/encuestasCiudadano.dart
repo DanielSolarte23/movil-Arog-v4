@@ -1,11 +1,11 @@
-import 'package:arog_movil/views/configuracionCiudadano.dart';
-import 'package:arog_movil/views/configurarNotificaciones.dart';
-import 'package:arog_movil/views/perfilCiudadano.dart';
-import 'package:arog_movil/views/perfilGestionAdmin.dart';
+import 'package:arog_movil/views/ciudadano/configuracionCiudadano.dart';
+import 'package:arog_movil/views/notificaciones/configurarNotificaciones.dart';
+import 'package:arog_movil/views/ciudadano/perfilCiudadano.dart';
+import 'package:arog_movil/views/ciudadano/realizarEncuestasCiudadano.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class GestionUseradmin extends StatelessWidget {
+class Encuestasciudadano extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,37 +72,37 @@ class GestionUseradmin extends StatelessWidget {
             children: [
               const SizedBox(height: 40),
               const Text(
-                'Lista usuarios',
+                'Encuestas disponibles',
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 40),
               _buildSurveyCard(
                 context,
-                title: 'Usuario',
-                rol: 'Recolector',
-                icon: Icons.person,
+                title: 'Datos generales',
+                date: '11/03/2025',
+                icon: Icons.note_rounded,
               ),
               const SizedBox(height: 23),
               _buildSurveyCard(
                 context,
-                title: 'Usuario',
-                rol: 'Recolector',
-                icon: Icons.person,
+                title: 'Opiniones y practicas',
+                date: '15/03/2025',
+                icon: Icons.question_answer,
               ),
               const SizedBox(height: 23),
               _buildSurveyCard(
                 context,
-                title: 'Usuario',
-                rol: 'Recolector',
-                icon: Icons.person,
+                title: '¿Como manejan los residuos?',
+                date: '18/03/2025',
+                icon: Icons.delete,
               ),
               const SizedBox(height: 23),
               _buildSurveyCard(
                 context,
-                title: 'Usuario',
-                rol: 'Recolector',
-                icon: Icons.person,
+                title: 'Cuentanos como reciclas',
+                date: '20/03/2025',
+                icon: Icons.pin_drop,
               ),
             ],
           ),
@@ -114,7 +114,7 @@ class GestionUseradmin extends StatelessWidget {
   Widget _buildSurveyCard(
     BuildContext context, {
     required String title,
-    required String rol,
+    required String date,
     required IconData icon,
   }) {
     return Card(
@@ -130,7 +130,9 @@ class GestionUseradmin extends StatelessWidget {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => PerfilGestionAdmin()),
+            MaterialPageRoute(
+              builder: (context) => Realizarencuestasciudadano(),
+            ),
           );
         },
         splashColor: Colors.lightGreen.withOpacity(0.1),
@@ -165,7 +167,23 @@ class GestionUseradmin extends StatelessWidget {
                 letterSpacing: 0.5,
               ),
             ),
-            subtitle: Text('Recolector'),
+            subtitle: Padding(
+              padding: const EdgeInsets.only(top: 4.0),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: const [
+                  Text(
+                    ' Click para Realizar Encuesta',
+                    style: TextStyle(color: Colors.lightGreen),
+                  ),
+                  Icon(
+                    Icons.arrow_forward_ios,
+                    size: 16,
+                    color: Colors.lightGreen,
+                  ),
+                ],
+              ),
+            ),
             contentPadding: const EdgeInsets.symmetric(horizontal: 12),
             minVerticalPadding: 0,
           ),

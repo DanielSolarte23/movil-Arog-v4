@@ -1,6 +1,6 @@
-import 'package:arog_movil/views/configuracionCiudadano.dart';
-import 'package:arog_movil/views/configurarNotificaciones.dart';
-import 'package:arog_movil/views/perfilCiudadano.dart';
+import 'package:arog_movil/views/ciudadano/configuracionCiudadano.dart';
+import 'package:arog_movil/views/notificaciones/configurarNotificaciones.dart';
+import 'package:arog_movil/views/ciudadano/perfilCiudadano.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 

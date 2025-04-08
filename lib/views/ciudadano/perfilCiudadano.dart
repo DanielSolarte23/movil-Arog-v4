@@ -1,20 +1,12 @@
-import 'package:arog_movil/views/configuracionCiudadano.dart';
-import 'package:arog_movil/views/homeAdmin.dart';
-import 'package:arog_movil/views/rutasRecolector.dart';
+import 'package:arog_movil/views/restablecer/Restablecerpassword.dart';
+import 'package:arog_movil/views/ciudadano/configuracionCiudadano.dart';
+import 'package:arog_movil/views/notificaciones/configurarNotificaciones.dart';
+import 'package:arog_movil/views/administrador/homeAdmin.dart';
+import 'package:arog_movil/views/recolector/rutasRecolector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class configurarNotificaciones extends StatefulWidget {
-  @override
-  _ConfigurarNotificacionesState createState() =>
-      _ConfigurarNotificacionesState();
-}
-
-class _ConfigurarNotificacionesState extends State<configurarNotificaciones> {
-  bool todasNotificaciones = false;
-  bool notificacionesEmail = false;
-  bool notificacionesBurbuja = false;
-
+class Perfilciudadano extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -133,90 +125,92 @@ class _ConfigurarNotificacionesState extends State<configurarNotificaciones> {
             ),
 
             const SizedBox(height: 30),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 28, vertical: 16),
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.green, width: 1.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.green, width: 1.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.green, width: 2.0),
+                  ),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red, width: 1.0),
+                  ),
+                  hintText: 'Nombre completo',
+                ),
+              ),
+            ),
+            const SizedBox(height: 15),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 28, vertical: 16),
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.green, width: 1.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.green, width: 1.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.green, width: 2.0),
+                  ),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red, width: 1.0),
+                  ),
+                  hintText: 'Correo',
+                ),
+              ),
+            ),
             const SizedBox(height: 30),
             const Text(
-              'Configurar notificaciones',
+              'Otras configuraciones',
               style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
               ),
             ),
-            const SizedBox(height: 40),
+            const SizedBox(height: 20),
             ListTile(
-              contentPadding: EdgeInsets.symmetric(horizontal: 80.0),
-              leading: const Icon(
-                Icons.notifications_active,
-                color: Colors.lightGreen,
-              ),
+              contentPadding: EdgeInsets.symmetric(horizontal: 85.0),
+              leading: const Icon(Icons.security, color: Colors.lightGreen),
               title: const Text(
-                'Activar todas las notificaciones',
+                'Cambiar contraseña',
                 style: TextStyle(color: Color.fromARGB(255, 133, 130, 130)),
                 textAlign: TextAlign.center,
               ),
-              trailing: Checkbox(
-                value: todasNotificaciones,
-                onChanged: (bool? value) {
-                  setState(() {
-                    todasNotificaciones = value ?? false;
-                  });
-                },
-                activeColor: Colors.lightGreen,
-              ),
               onTap: () {
-                setState(() {
-                  todasNotificaciones = !todasNotificaciones;
-                });
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Restablecerpassword(),
+                  ),
+                );
               },
             ),
             ListTile(
-              contentPadding: EdgeInsets.symmetric(horizontal: 80.0),
+              contentPadding: EdgeInsets.symmetric(horizontal: 85.0),
               leading: const Icon(
-                Icons.notification_important,
+                Icons.notifications,
                 color: Colors.lightGreen,
               ),
               title: const Text(
-                'Enviar notificaciones al correo',
+                'Configurar notificaciones',
                 style: TextStyle(color: Color.fromARGB(255, 133, 130, 130)),
                 textAlign: TextAlign.center,
               ),
-              trailing: Checkbox(
-                value: notificacionesEmail,
-                onChanged: (bool? value) {
-                  setState(() {
-                    notificacionesEmail = value ?? false;
-                  });
-                },
-                activeColor: Colors.lightGreen,
-              ),
               onTap: () {
-                setState(() {
-                  notificacionesEmail = !notificacionesEmail;
-                });
-              },
-            ),
-
-            ListTile(
-              contentPadding: EdgeInsets.symmetric(horizontal: 80.0),
-              leading: const Icon(Icons.bubble_chart, color: Colors.lightGreen),
-              title: const Text(
-                'Burbuja de notificaciones',
-                style: TextStyle(color: Color.fromARGB(255, 133, 130, 130)),
-                textAlign: TextAlign.center,
-              ),
-              trailing: Checkbox(
-                value: notificacionesBurbuja,
-                onChanged: (bool? value) {
-                  setState(() {
-                    notificacionesBurbuja = value ?? false;
-                  });
-                },
-                activeColor: Colors.lightGreen,
-              ),
-              onTap: () {
-                setState(() {
-                  notificacionesBurbuja = !notificacionesBurbuja;
-                });
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => configurarNotificaciones(),
+                  ),
+                );
               },
             ),
             const SizedBox(height: 20),

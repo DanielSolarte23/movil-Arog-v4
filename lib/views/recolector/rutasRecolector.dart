@@ -1,7 +1,7 @@
-import 'package:arog_movil/views/configuracionCiudadano.dart';
-import 'package:arog_movil/views/configurarNotificaciones.dart';
-import 'package:arog_movil/views/perfilCiudadano.dart';
-import 'package:arog_movil/views/rutasAsignadasRecolector.dart';
+import 'package:arog_movil/views/ciudadano/configuracionCiudadano.dart';
+import 'package:arog_movil/views/notificaciones/configurarNotificaciones.dart';
+import 'package:arog_movil/views/ciudadano/perfilCiudadano.dart';
+import 'package:arog_movil/views/recolector/rutasAsignadasRecolector.dart';
 import 'package:flutter/material.dart';
 
 class RutasRecolector extends StatelessWidget {
