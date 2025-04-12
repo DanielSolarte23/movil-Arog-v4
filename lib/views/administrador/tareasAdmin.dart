@@ -1,10 +1,24 @@
-import 'package:arog_movil/views/ciudadano/configuracionCiudadano.dart';
-import 'package:arog_movil/views/notificaciones/configurarNotificaciones.dart';
 import 'package:arog_movil/views/administrador/homeAdmin.dart';
+import 'package:arog_movil/views/ciudadano/configuracionCiudadano.dart';
 import 'package:arog_movil/views/ciudadano/perfilCiudadano.dart';
+import 'package:arog_movil/views/notificaciones/configurarNotificaciones.dart';
 import 'package:flutter/material.dart';
 
-class Tareasadmin extends StatelessWidget {
+class Tareasadmin extends StatefulWidget {
+  @override
+  _TareasadminState createState() => _TareasadminState();
+}
+
+class _TareasadminState extends State<Tareasadmin> {
+  String _selectedOption = 'Todas las tareas';
+
+  final List<String> _options = [
+    'Todas las tareas',
+    'En progreso ',
+    'Por hacer',
+    'Completado',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,15 +91,77 @@ class Tareasadmin extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(height: 20),
-          const Text(
-            ' Gstion  de Tareas ',
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
+          Container(
+            width: double.infinity,
+            alignment: Alignment.center,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Icon(
+                  Icons.assignment_outlined,
+                  size: 28,
+                  color: Colors.lightGreen,
+                ),
+                SizedBox(width: 10),
+                Text(
+                  'Gestión de Tareas',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 107, 155, 53),
+                  ),
+                ),
+              ],
             ),
-            textAlign: TextAlign.center,
           ),
+          const SizedBox(height: 20),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.9,
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: const Color.fromARGB(255, 10, 10, 10)),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color.fromARGB(
+                    255,
+                    64,
+                    194,
+                    47,
+                  ).withOpacity(0.1),
+                  blurRadius: 4,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton<String>(
+                value: _selectedOption,
+                isExpanded: true,
+                icon: const Icon(
+                  Icons.arrow_drop_down,
+                  color: Color.fromARGB(255, 76, 177, 45),
+                ),
+                style: const TextStyle(color: Colors.black87, fontSize: 16),
+                onChanged: (String? newValue) {
+                  if (newValue != null) {
+                    setState(() {
+                      _selectedOption = newValue;
+                    });
+                  }
+                },
+                items:
+                    _options.map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+              ),
+            ),
+          ),
+          //  Agregar más widgets según la opción seleccionada
         ],
       ),
     );

@@ -35,7 +35,10 @@ class Configuracion extends StatelessWidget {
             leading: const Icon(Icons.person, color: Colors.lightGreen),
             title: const Text(
               'Perfil',
-              style: TextStyle(color: Color.fromARGB(255, 133, 130, 130),fontWeight: FontWeight.w500),
+              style: TextStyle(
+                color: Color.fromARGB(255, 68, 67, 67),
+                fontWeight: FontWeight.w500,
+              ),
             ),
             onTap: () {
               Navigator.push(
@@ -48,7 +51,10 @@ class Configuracion extends StatelessWidget {
             leading: const Icon(Icons.phone, color: Colors.lightGreen),
             title: const Text(
               'Soporte',
-              style: TextStyle(color: Color.fromARGB(255, 133, 130, 130),fontWeight: FontWeight.w500),
+              style: TextStyle(
+                color: Color.fromARGB(255, 68, 67, 67),
+                fontWeight: FontWeight.w500,
+              ),
             ),
             onTap: () {},
           ),
@@ -56,7 +62,10 @@ class Configuracion extends StatelessWidget {
             leading: const Icon(Icons.dark_mode, color: Colors.lightGreen),
             title: const Text(
               'Activar modo oscuro',
-              style: TextStyle(color: Color.fromARGB(255, 133, 130, 130),fontWeight: FontWeight.w500),
+              style: TextStyle(
+                color: Color.fromARGB(255, 68, 67, 67),
+                fontWeight: FontWeight.w500,
+              ),
             ),
             onTap: () {},
           ),
@@ -64,7 +73,10 @@ class Configuracion extends StatelessWidget {
             leading: const Icon(Icons.help, color: Colors.lightGreen),
             title: const Text(
               'Ayuda',
-              style: TextStyle(color: Color.fromARGB(255, 133, 130, 130),fontWeight: FontWeight.w500),
+              style: TextStyle(
+                color: Color.fromARGB(255, 68, 67, 67),
+                fontWeight: FontWeight.w500,
+              ),
             ),
             onTap: () {},
           ),
@@ -72,7 +84,10 @@ class Configuracion extends StatelessWidget {
             leading: const Icon(Icons.logout, color: Colors.lightGreen),
             title: const Text(
               'Cerrar sesion',
-              style: TextStyle(color: Color.fromARGB(255, 133, 130, 130),fontWeight: FontWeight.w500),
+              style: TextStyle(
+                color: Color.fromARGB(255, 68, 67, 67),
+                fontWeight: FontWeight.w500,
+              ),
             ),
             onTap: () {},
           ),
