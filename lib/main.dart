@@ -7,6 +7,7 @@ import 'package:arog_movil/views/ciudadano/perfilCiudadano.dart';
 import 'package:arog_movil/views/ciudadano/rutasCiudadano.dart';
 import 'package:arog_movil/views/recolector/homeRecolector.dart';
 import 'package:arog_movil/views/recolector/rutasRecolector.dart';
+import 'package:arog_movil/widgets/pantalla_inicio.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'AROG-MOVIL',
-      home: HomeRecolector(),
+      home: SplashScreen(),
       routes: {
         // Rutas Administrador
         RouteNames.homeAdmin: (context) => HomeAdmin(),
