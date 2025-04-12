@@ -2,7 +2,6 @@ import 'package:arog_movil/views/restablecer/Restablecerpassword.dart';
 import 'package:arog_movil/views/ciudadano/configuracionCiudadano.dart';
 import 'package:arog_movil/views/notificaciones/configurarNotificaciones.dart';
 import 'package:arog_movil/views/administrador/homeAdmin.dart';
-import 'package:arog_movil/views/recolector/rutasRecolector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -73,33 +72,27 @@ class Perfilciudadano extends StatelessWidget {
             const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                children: [
-                  IconButton(
-                    icon: const Icon(
-                      Icons.arrow_back,
-                      color: Colors.lightGreen,
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(
+                      Icons.person,
+                      size: 28,
+                      color: Color.fromARGB(255, 78, 78, 78),
                     ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => RutasRecolector(),
-                        ),
-                      );
-                    },
-                  ),
-                  const SizedBox(width: 110),
-                  const Text(
-                    'Perfil',
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                    SizedBox(width: 10),
+                    Text(
+                      'Perfil',
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 78, 78, 78),
+                        fontStyle: FontStyle.normal,
+                      ),
                     ),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
 
@@ -125,20 +118,33 @@ class Perfilciudadano extends StatelessWidget {
             ),
 
             const SizedBox(height: 30),
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 28, vertical: 16),
               child: TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green, width: 1.0),
+                    borderRadius: BorderRadius.circular(15.0),
+                    borderSide: BorderSide(
+                      color: Color.fromARGB(255, 125, 199, 56),
+                      width: 2.0,
+                    ),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green, width: 1.0),
+                    borderRadius: BorderRadius.circular(15.0),
+                    borderSide: BorderSide(
+                      color: Color.fromARGB(255, 125, 199, 56),
+                      width: 2.0,
+                    ),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green, width: 2.0),
+                    borderRadius: BorderRadius.circular(15.0),
+                    borderSide: BorderSide(
+                      color: Color.fromARGB(255, 125, 199, 56),
+                      width: 2.0,
+                    ),
                   ),
                   errorBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15.0),
                     borderSide: BorderSide(color: Colors.red, width: 1.0),
                   ),
                   hintText: 'Nombre completo',
@@ -146,20 +152,33 @@ class Perfilciudadano extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 15),
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 28, vertical: 16),
               child: TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green, width: 1.0),
+                    borderRadius: BorderRadius.circular(15.0),
+                    borderSide: BorderSide(
+                      color: Color.fromARGB(255, 125, 199, 56),
+                      width: 2.0,
+                    ),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green, width: 1.0),
+                    borderRadius: BorderRadius.circular(15.0),
+                    borderSide: BorderSide(
+                      color: Color.fromARGB(255, 125, 199, 56),
+                      width: 2.0,
+                    ),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green, width: 2.0),
+                    borderRadius: BorderRadius.circular(15.0),
+                    borderSide: BorderSide(
+                      color: Color.fromARGB(255, 125, 199, 56),
+                      width: 2.0,
+                    ),
                   ),
                   errorBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15.0),
                     borderSide: BorderSide(color: Colors.red, width: 1.0),
                   ),
                   hintText: 'Correo',
@@ -172,7 +191,7 @@ class Perfilciudadano extends StatelessWidget {
               style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: Color.fromARGB(255, 78, 78, 78),
               ),
             ),
             const SizedBox(height: 20),

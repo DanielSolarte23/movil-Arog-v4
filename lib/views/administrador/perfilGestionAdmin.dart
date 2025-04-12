@@ -1,4 +1,3 @@
-
 import 'package:arog_movil/views/ciudadano/configuracionCiudadano.dart';
 import 'package:arog_movil/views/notificaciones/configurarNotificaciones.dart';
 import 'package:arog_movil/views/administrador/homeAdmin.dart';
@@ -120,8 +119,8 @@ class PerfilGestionAdmin extends StatelessWidget {
                   child: Text(
                     'Usuario',
                     style: TextStyle(
-                      fontSize: 26,
-                      color: Colors.black,
+                      fontSize: 22,
+                      color: Color.fromARGB(255, 78, 78, 78),
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
@@ -139,7 +138,10 @@ class PerfilGestionAdmin extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 30),
                   child: RichText(
                     text: TextSpan(
-                      style: TextStyle(fontSize: 18, color: Colors.black),
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Color.fromARGB(255, 78, 78, 78),
+                      ),
                       children: <TextSpan>[
                         TextSpan(
                           text: 'Correo electronico:   ',
@@ -161,7 +163,10 @@ class PerfilGestionAdmin extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 30),
                   child: RichText(
                     text: TextSpan(
-                      style: TextStyle(fontSize: 18, color: Colors.black),
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Color.fromARGB(255, 78, 78, 78),
+                      ),
                       children: <TextSpan>[
                         TextSpan(
                           text: 'Fecha de nacimiento:  ',
@@ -183,7 +188,10 @@ class PerfilGestionAdmin extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 30),
                   child: RichText(
                     text: TextSpan(
-                      style: TextStyle(fontSize: 18, color: Colors.black),
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Color.fromARGB(255, 78, 78, 78),
+                      ),
                       children: <TextSpan>[
                         TextSpan(
                           text: 'Telefono:   ',

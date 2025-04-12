@@ -14,7 +14,7 @@ class Configuracion extends StatelessWidget {
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: Color.fromARGB(255, 78, 78, 78),
           ),
         ),
         leading: IconButton(

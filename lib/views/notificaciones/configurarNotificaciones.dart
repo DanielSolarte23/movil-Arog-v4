@@ -97,15 +97,25 @@ class _ConfigurarNotificacionesState extends State<configurarNotificaciones> {
                       );
                     },
                   ),
-                  const SizedBox(width: 110),
-                  const Text(
-                    'Perfil',
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                    textAlign: TextAlign.center,
+                  const SizedBox(width: 85),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(
+                        Icons.person,
+                        size: 28,
+                        color: Color.fromARGB(255, 78, 78, 78),
+                      ),
+                      SizedBox(width: 10),
+                      Text(
+                        'Perfil',
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 78, 78, 78),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -139,7 +149,7 @@ class _ConfigurarNotificacionesState extends State<configurarNotificaciones> {
               style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: Color.fromARGB(255, 78, 78, 78),
               ),
             ),
             const SizedBox(height: 40),

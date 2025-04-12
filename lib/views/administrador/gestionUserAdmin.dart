@@ -84,7 +84,11 @@ class GestionUseradmin extends StatelessWidget {
               const SizedBox(height: 40),
               const Text(
                 'Lista usuarios',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 78, 78, 78),
+                ),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 40),

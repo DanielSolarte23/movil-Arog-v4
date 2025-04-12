@@ -1,5 +1,5 @@
 name: arog_movil
-description: "A new Flutter project."
+description: "Projecto Arog"
 publish_to: "none"
 
 version: 1.0.0+1
@@ -18,12 +18,18 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   flutter_native_splash: ^2.4.5
   table_calendar: ^3.0.9
+  flutter_launcher_icons: ^0.13.1
 
 flutter_native_splash:
   color: "#E1E5E9FF"
   image: "assets/images/ArogV2.png"
   android: true
   ios: true
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/ArogV2.png"
 
 flutter:
   uses-material-design: true

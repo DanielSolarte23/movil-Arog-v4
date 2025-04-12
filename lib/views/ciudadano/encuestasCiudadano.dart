@@ -82,10 +82,24 @@ class Encuestasciudadano extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 40),
-              const Text(
-                'Encuestas disponibles',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Icon(
+                    Icons.notes,
+                    size: 28,
+                    color: Color.fromARGB(255, 78, 78, 78),
+                  ),
+                  SizedBox(width: 10),
+                  Text(
+                    'Encuestas disponibles',
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 78, 78, 78),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 40),
               _buildSurveyCard(
