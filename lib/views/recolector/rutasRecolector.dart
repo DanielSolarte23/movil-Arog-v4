@@ -90,14 +90,14 @@ class RutasRecolector extends StatelessWidget {
                     children: const [
                       Icon(
                         Icons.pin_drop,
-                        size: 28,
+                        size: 26,
                         color: Color.fromARGB(255, 78, 78, 78),
                       ),
                       SizedBox(width: 10),
                       Text(
                         'Rutas',
                         style: TextStyle(
-                          fontSize: 22,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Color.fromARGB(255, 78, 78, 78),
                         ),

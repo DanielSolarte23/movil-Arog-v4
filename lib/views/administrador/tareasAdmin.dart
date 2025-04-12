@@ -100,14 +100,14 @@ class _TareasadminState extends State<Tareasadmin> {
               children: const [
                 Icon(
                   Icons.assignment_outlined,
-                  size: 28,
+                  size: 26,
                   color: Color.fromARGB(255, 78, 78, 78),
                 ),
                 SizedBox(width: 10),
                 Text(
                   'Gestión de Tareas',
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 19,
                     fontWeight: FontWeight.bold,
                     color: Color.fromARGB(255, 78, 78, 78),
                   ),

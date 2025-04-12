@@ -98,20 +98,20 @@ class _ConfigurarNotificacionesState extends State<configurarNotificaciones> {
                       );
                     },
                   ),
-                  const SizedBox(width: 85),
+                  const SizedBox(width: 90),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       Icon(
                         Icons.person,
-                        size: 28,
+                        size: 26,
                         color: Color.fromARGB(255, 78, 78, 78),
                       ),
                       SizedBox(width: 10),
                       Text(
                         'Perfil',
                         style: TextStyle(
-                          fontSize: 22,
+                          fontSize: 19,
                           fontWeight: FontWeight.bold,
                           color: Color.fromARGB(255, 78, 78, 78),
                         ),
