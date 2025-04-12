@@ -12,17 +12,27 @@ class RutasAdmin extends StatelessWidget {
   ];
 
   void _showEditModal(BuildContext context) {
-    final TextEditingController _routeNameController = TextEditingController();
+    // Controladores individuales para cada campo
+    final routeNameController = TextEditingController();
+    final dateTimeController = TextEditingController();
+    final userController = TextEditingController();
+    final vehicleController = TextEditingController();
+    final formTypeController = TextEditingController();
+    final collectionPointController = TextEditingController();
 
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return SingleChildScrollView(
-          child: Dialog(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          child: Container(
+            width: MediaQuery.of(context).size.width * 0.9,
+            constraints: BoxConstraints(
+              maxHeight: MediaQuery.of(context).size.height * 0.8,
             ),
-            child: Padding(
+            child: SingleChildScrollView(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -30,165 +40,47 @@ class RutasAdmin extends StatelessWidget {
                   Text(
                     'Editar Ruta',
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: Colors.lightGreen[800],
                     ),
                   ),
                   const SizedBox(height: 20),
-
-                  TextField(
-                    controller: _routeNameController,
-                    decoration: InputDecoration(
-                      labelText: 'Nombre de la ruta',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      prefixIcon: Icon(
-                        Icons.route,
-                        color: Colors.lightGreen[600],
-                      ),
-                    ),
+                  _buildTextField(
+                    controller: routeNameController,
+                    label: 'Nombre de la ruta',
+                    icon: Icons.route,
                   ),
                   const SizedBox(height: 15),
-
-                  TextField(
-                    controller: _routeNameController,
-                    decoration: InputDecoration(
-                      labelText: 'Fecha y hora de inicio',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      prefixIcon: Icon(
-                        Icons.access_time,
-                        color: Colors.lightGreen,
-                      ),
-                    ),
+                  _buildTextField(
+                    controller: dateTimeController,
+                    label: 'Fecha y hora de inicio',
+                    icon: Icons.access_time,
                   ),
                   const SizedBox(height: 15),
-
-                  TextField(
-                    controller: _routeNameController,
-                    decoration: InputDecoration(
-                      labelText: 'Usuario asignado',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      prefixIcon: Icon(
-                        Icons.person,
-                        color: Colors.lightGreen[600],
-                      ),
-                    ),
+                  _buildTextField(
+                    controller: userController,
+                    label: 'Usuario asignado',
+                    icon: Icons.person,
                   ),
                   const SizedBox(height: 15),
-
-                  TextField(
-                    controller: _routeNameController,
-                    decoration: InputDecoration(
-                      labelText: 'Vehículo',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      prefixIcon: Icon(
-                        Icons.local_shipping,
-                        color: Colors.lightGreen,
-                      ),
-                    ),
+                  _buildTextField(
+                    controller: vehicleController,
+                    label: 'Vehículo',
+                    icon: Icons.local_shipping,
                   ),
                   const SizedBox(height: 15),
-
-                  TextField(
-                    controller: _routeNameController,
-                    decoration: InputDecoration(
-                      labelText: 'Tipo de formulario',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      prefixIcon: Icon(
-                        Icons.description,
-                        color: Colors.lightGreen[600],
-                      ),
-                    ),
+                  _buildTextField(
+                    controller: formTypeController,
+                    label: 'Tipo de formulario',
+                    icon: Icons.description,
                   ),
-                  const SizedBox(height: 30),
-                  Column(
-                    children: [
-                      TextField(
-                        controller: _routeNameController,
-                        decoration: InputDecoration(
-                          labelText: 'Puntos de recolección',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          prefixIcon: Icon(
-                            Icons.location_on,
-                            color: Colors.lightGreen[600],
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          const SizedBox(height: 30),
-                          IconButton(
-                            icon: Icon(
-                              Icons.delete,
-                              color: const Color.fromARGB(255, 221, 32, 32),
-                            ),
-                            onPressed: () {},
-                          ),
-                          IconButton(
-                            icon: Icon(
-                              Icons.add_circle,
-                              color: Colors.lightGreen[700],
-                            ),
-                            onPressed: () {},
-                          ),
-                        ],
-                      ),
-                    ],
+                  const SizedBox(height: 15),
+                  _buildCollectionPointsSection(
+                    controller: collectionPointController,
                   ),
-
                   const SizedBox(height: 25),
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.grey[300],
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                        ),
-                        child: const Text(
-                          'Cancelar',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        onPressed: () => Navigator.of(context).pop(),
-                      ),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.lightGreen[600],
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                        ),
-                        child: const Text(
-                          'Guardar',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        onPressed: () => Navigator.of(context).pop(),
-                      ),
-                    ],
-                  ),
+                  _buildActionButtons(context),
                 ],
               ),
             ),
@@ -198,10 +90,130 @@ class RutasAdmin extends StatelessWidget {
     );
   }
 
+  // Construir campos de texto consistentes
+  Widget _buildTextField({
+    required TextEditingController controller,
+    required String label,
+    required IconData icon,
+  }) {
+    return TextField(
+      controller: controller,
+      decoration: InputDecoration(
+        labelText: label,
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          borderSide: BorderSide(color: Colors.lightGreen, width: 1.0),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          borderSide: BorderSide(color: Colors.lightGreen, width: 2.0),
+        ),
+        prefixIcon: Icon(icon, color: Colors.lightGreen),
+      ),
+    );
+  }
+
+  // Widget para la sección de puntos de recolección
+  Widget _buildCollectionPointsSection({
+    required TextEditingController controller,
+  }) {
+    return Column(
+      children: [
+        TextField(
+          controller: controller,
+          decoration: InputDecoration(
+            labelText: 'Puntos de recolección',
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+              borderSide: BorderSide(color: Colors.lightGreen, width: 1.0),
+            ),
+            prefixIcon: Icon(Icons.location_on, color: Colors.lightGreen),
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.delete),
+              color: Colors.red,
+              onPressed: () {
+                controller.clear();
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.add_circle),
+              color: Colors.lightGreen,
+              onPressed: () {
+                // Lógica para agregar punto de recolección
+              },
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  // Widget para los botones de acción
+  Widget _buildActionButtons(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.grey[300],
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+          ),
+          onPressed: () => Navigator.pop(context),
+          child: const Text(
+            'Cancelar',
+            style: TextStyle(
+              color: Colors.black87,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.lightGreen,
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+          ),
+          onPressed: () {
+            // lógica para guardar los cambios
+            Navigator.pop(context);
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Cambios guardados correctamente'),
+                backgroundColor: Colors.lightGreen,
+              ),
+            );
+          },
+          child: const Text(
+            'Guardar',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          ),
+        ),
+      ],
+    );
+  }
+
   void _showNuevaRutaModal(BuildContext context) {
-    final TextEditingController _routeNameController = TextEditingController();
-    final TextEditingController _routeDescriptionController =
-        TextEditingController();
+    // Controladores para cada campo
+    final routeNameController = TextEditingController();
+    final startTimeController = TextEditingController();
+    final userController = TextEditingController();
+    final vehicleController = TextEditingController();
+    final formTypeController = TextEditingController();
+    final collectionPointController = TextEditingController();
 
     showDialog(
       context: context,
@@ -210,162 +222,130 @@ class RutasAdmin extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20.0),
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'Agregar nueva ruta',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.lightGreen[800],
-                  ),
-                ),
-                const SizedBox(height: 20),
-                TextField(
-                  controller: _routeNameController,
-                  decoration: InputDecoration(
-                    labelText: 'Nombre de la ruta',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    prefixIcon: Icon(Icons.person, color: Colors.lightGreen),
-                  ),
-                ),
-
-                const SizedBox(height: 20),
-                TextField(
-                  controller: _routeNameController,
-                  decoration: InputDecoration(
-                    labelText: 'Hora de inicio',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    prefixIcon: Icon(Icons.watch, color: Colors.lightGreen),
-                  ),
-                ),
-
-                const SizedBox(height: 15),
-                TextField(
-                  controller: _routeNameController,
-                  decoration: InputDecoration(
-                    labelText: 'Usuario asignado',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    prefixIcon: Icon(Icons.route, color: Colors.lightGreen),
-                  ),
-                ),
-                const SizedBox(height: 15),
-                TextField(
-                  controller: _routeNameController,
-                  decoration: InputDecoration(
-                    labelText: 'Vehiculo',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    prefixIcon: Icon(
-                      Icons.car_rental,
-                      color: Colors.lightGreen,
+          child: Container(
+            width: MediaQuery.of(context).size.width * 0.9,
+            constraints: BoxConstraints(
+              maxHeight: MediaQuery.of(context).size.height * 0.8,
+            ),
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'Agregar nueva ruta',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.lightGreen[800],
                     ),
                   ),
-                ),
-                const SizedBox(height: 15),
-                TextField(
-                  controller: _routeNameController,
-                  decoration: InputDecoration(
-                    labelText: 'Tipo de formulario',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    prefixIcon: Icon(Icons.note, color: Colors.lightGreen),
+                  const SizedBox(height: 20),
+                  _buildTextField(
+                    controller: routeNameController,
+                    label: 'Nombre de la ruta',
+                    icon: Icons.route,
                   ),
-                ),
-                const SizedBox(height: 15),
-                TextField(
-                  controller: _routeNameController,
-                  decoration: InputDecoration(
-                    labelText: 'Hora de inicio',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    prefixIcon: Icon(Icons.start, color: Colors.lightGreen),
+                  const SizedBox(height: 15),
+                  _buildTextField(
+                    controller: startTimeController,
+                    label: 'Hora de inicio',
+                    icon: Icons.access_time,
                   ),
-                ),
-                const SizedBox(height: 15),
-                TextField(
-                  controller: _routeNameController,
-                  decoration: InputDecoration(
-                    labelText: 'Puntos de recoleccion',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    prefixIcon: Icon(Icons.pin_drop, color: Colors.lightGreen),
+                  const SizedBox(height: 15),
+                  _buildTextField(
+                    controller: userController,
+                    label: 'Usuario asignado',
+                    icon: Icons.person,
                   ),
-                ),
-
-                const SizedBox(height: 25),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.grey[300],
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                      child: Text(
-                        'Cancelar',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(
-                          255,
-                          123,
-                          179,
-                          59,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                      child: Text(
-                        'Guardar',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      onPressed: () {
-                        final newName = _routeNameController.text;
-                        final newDescription = _routeDescriptionController.text;
-
-                        print('Nuevo nombre: $newName');
-                        print('Nueva descripción: $newDescription');
-
-                        Navigator.of(context).pop();
-
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Ruta actualizada correctamente'),
-                            backgroundColor: const Color.fromARGB(
-                              255,
-                              123,
-                              179,
-                              59,
-                            ),
+                  const SizedBox(height: 15),
+                  _buildTextField(
+                    controller: vehicleController,
+                    label: 'Vehículo',
+                    icon: Icons.local_shipping,
+                  ),
+                  const SizedBox(height: 15),
+                  _buildTextField(
+                    controller: formTypeController,
+                    label: 'Tipo de formulario',
+                    icon: Icons.description,
+                  ),
+                  const SizedBox(height: 15),
+                  _buildCollectionPointsSection(
+                    controller: collectionPointController,
+                  ),
+                  const SizedBox(height: 25),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.grey[300],
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 30,
+                            vertical: 12,
                           ),
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ],
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                        onPressed: () => Navigator.pop(context),
+                        child: const Text(
+                          'Cancelar',
+                          style: TextStyle(
+                            color: Colors.black87,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.lightGreen,
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 30,
+                            vertical: 12,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                        onPressed: () {
+                          // Lógica para guardar la nueva ruta
+                          final routeName = routeNameController.text;
+                          final startTime = startTimeController.text;
+                          final user = userController.text;
+                          final vehicle = vehicleController.text;
+                          final formType = formTypeController.text;
+                          final collectionPoints =
+                              collectionPointController.text;
+
+                          print('Nombre de la ruta: $routeName');
+                          print('Hora de inicio: $startTime');
+                          print('Usuario asignado: $user');
+                          print('Vehículo: $vehicle');
+                          print('Tipo de formulario: $formType');
+                          print('Puntos de recolección: $collectionPoints');
+
+                          Navigator.pop(context);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Ruta creada correctamente'),
+                              backgroundColor: Colors.lightGreen,
+                            ),
+                          );
+                        },
+                        child: const Text(
+                          'Guardar',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         );

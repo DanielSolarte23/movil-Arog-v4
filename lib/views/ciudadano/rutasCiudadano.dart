@@ -84,13 +84,24 @@ class _RutasCiudadanoState extends State<RutasCiudadano> {
         child: Column(
           children: [
             const SizedBox(height: 20),
-            const Text(
-              'Rutas',
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Icon(
+                  Icons.pin_drop,
+                  size: 28,
+                  color: Color.fromARGB(255, 78, 78, 78),
+                ),
+                SizedBox(width: 10),
+                Text(
+                  'Rutas',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 78, 78, 78),
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 80),
 

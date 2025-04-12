@@ -100,7 +100,7 @@ class _TareasadminState extends State<Tareasadmin> {
                 Icon(
                   Icons.assignment_outlined,
                   size: 28,
-                  color: Colors.lightGreen,
+                  color: Color.fromARGB(255, 78, 78, 78),
                 ),
                 SizedBox(width: 10),
                 Text(
@@ -108,7 +108,7 @@ class _TareasadminState extends State<Tareasadmin> {
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 107, 155, 53),
+                    color: Color.fromARGB(255, 78, 78, 78),
                   ),
                 ),
               ],

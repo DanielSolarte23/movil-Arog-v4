@@ -11,11 +11,10 @@ class HomeRecolector extends StatelessWidget {
     {'title': 'Rutas', 'icon': Icons.route, 'route': RutasRecolector()},
     {'title': 'Tareas', 'icon': Icons.assignment, 'route': null},
     {
-      'title': 'Registro de incidencias',
+      'title': 'Registros',
       'icon': Icons.app_registration,
       'route': null,
     },
-    {'title': 'Registro', 'icon': Icons.person, 'route': null},
     {'title': 'Historial de registro', 'icon': Icons.history},
     {'title': 'Galería', 'icon': Icons.image, 'route': null},
     {'title': 'Pagos', 'icon': Icons.payment, 'route': null},
@@ -117,7 +116,7 @@ class HomeRecolector extends StatelessWidget {
                 const Text(
                   'Menu',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Color.fromARGB(255, 78, 78, 78),
                     fontWeight: FontWeight.bold,
                     fontSize: 22,
                   ),

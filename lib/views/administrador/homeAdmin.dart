@@ -1,6 +1,5 @@
 import 'package:arog_movil/views/ciudadano/configuracionCiudadano.dart';
 import 'package:arog_movil/views/notificaciones/configurarNotificaciones.dart';
-import 'package:arog_movil/views/ciudadano/encuestasCiudadano.dart';
 import 'package:arog_movil/views/administrador/gestionUserAdmin.dart';
 import 'package:arog_movil/views/ciudadano/perfilCiudadano.dart';
 import 'package:arog_movil/views/administrador/rutasAdmin.dart';
@@ -16,29 +15,15 @@ class HomeAdmin extends StatelessWidget {
       'icon': Icons.people_alt,
       'route': GestionUseradmin(),
     },
-    {
-      'title': 'Registro de incidencias',
-      'icon': Icons.app_registration,
-      'route': null,
-    },
     {'title': 'Historial de registro', 'icon': Icons.history, 'route': null},
     {'title': 'Pagos', 'icon': Icons.payment, 'route': null},
     {'title': 'Galería', 'icon': Icons.image, 'route': null},
-    {
-      'title': 'Informes y Certificados',
-      'icon': Icons.info_rounded,
-      'route': null,
-    },
+    {'title': 'Informes', 'icon': Icons.info_rounded, 'route': null},
     {'title': 'Registros', 'icon': Icons.person, 'route': null},
     {
       'title': 'Estadísticas y métricas',
       'icon': Icons.analytics,
       'route': null,
-    },
-    {
-      'title': 'Ver encuestas',
-      'icon': Icons.notes,
-      'route': Encuestasciudadano(),
     },
   ];
 
@@ -124,6 +109,7 @@ class HomeAdmin extends StatelessWidget {
               ),
             ),
           ),
+          const SizedBox(height: 25),
           Expanded(
             child: GridView.builder(
               padding: const EdgeInsets.all(12),

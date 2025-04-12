@@ -82,15 +82,25 @@ class GestionUseradmin extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 40),
-              const Text(
-                'Lista usuarios',
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 78, 78, 78),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(
+                      Icons.people_alt,
+                      size: 28,
+                      color: Color.fromARGB(255, 78, 78, 78),
+                    ),
+                    SizedBox(width: 10),
+                    Text(
+                      'Lista de Usuarios',
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 78, 78, 78),
+                      ),
+                    ),
+                  ],
                 ),
-                textAlign: TextAlign.center,
-              ),
               const SizedBox(height: 40),
               _buildSurveyCard(
                 context,
