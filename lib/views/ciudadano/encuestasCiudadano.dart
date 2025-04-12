@@ -37,6 +37,7 @@ class Encuestasciudadano extends StatelessWidget {
           ),
           child: const TextField(
             decoration: InputDecoration(
+              hintText: 'Buscar...',
               prefixIcon: Icon(Icons.search, color: Colors.grey),
               border: InputBorder.none,
               contentPadding: EdgeInsets.symmetric(vertical: 5),

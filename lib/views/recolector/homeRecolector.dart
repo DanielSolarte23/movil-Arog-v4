@@ -10,11 +10,7 @@ class HomeRecolector extends StatelessWidget {
   final List<Map<String, dynamic>> menuItems = [
     {'title': 'Rutas', 'icon': Icons.route, 'route': RutasRecolector()},
     {'title': 'Tareas', 'icon': Icons.assignment, 'route': null},
-    {
-      'title': 'Registros',
-      'icon': Icons.app_registration,
-      'route': null,
-    },
+    {'title': 'Registros', 'icon': Icons.app_registration, 'route': null},
     {'title': 'Historial de registro', 'icon': Icons.history},
     {'title': 'Galería', 'icon': Icons.image, 'route': null},
     {'title': 'Pagos', 'icon': Icons.payment, 'route': null},
@@ -56,6 +52,7 @@ class HomeRecolector extends StatelessWidget {
           ),
           child: const TextField(
             decoration: InputDecoration(
+              hintText: 'Buscar...',
               prefixIcon: Icon(Icons.search, color: Colors.grey),
               border: InputBorder.none,
               contentPadding: EdgeInsets.symmetric(vertical: 5),
@@ -87,6 +84,7 @@ class HomeRecolector extends StatelessWidget {
       ),
       body: Column(
         children: [
+          const SizedBox(height: 20),
           Container(
             height: 150,
             margin: const EdgeInsets.all(16),
@@ -109,18 +107,39 @@ class HomeRecolector extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 30),
+          const SizedBox(height: 20),
           Container(
-            child: Column(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  'Menu',
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 78, 78, 78),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 22,
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
                   ),
-                  textAlign: TextAlign.center,
+                  decoration: BoxDecoration(
+                    color: Colors.lightGreen.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.grid_view,
+                        color: Color.fromARGB(255, 78, 78, 78),
+                        size: 20,
+                      ),
+                      SizedBox(width: 8),
+                      const Text(
+                        'Menú Principal',
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 78, 78, 78),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -187,6 +206,7 @@ class HomeRecolector extends StatelessWidget {
                               style: const TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 12,
+                                color: Color.fromARGB(255, 78, 78, 78),
                               ),
                               textAlign: TextAlign.center,
                             ),

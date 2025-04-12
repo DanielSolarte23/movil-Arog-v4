@@ -57,6 +57,7 @@ class HomeAdmin extends StatelessWidget {
           ),
           child: const TextField(
             decoration: InputDecoration(
+              hintText: 'Buscar...',
               prefixIcon: Icon(Icons.search, color: Colors.grey),
               border: InputBorder.none,
               contentPadding: EdgeInsets.symmetric(vertical: 5),
@@ -88,6 +89,7 @@ class HomeAdmin extends StatelessWidget {
       ),
       body: Column(
         children: [
+          const SizedBox(height: 20),
           Container(
             height: 150,
             margin: const EdgeInsets.all(16),
@@ -109,6 +111,45 @@ class HomeAdmin extends StatelessWidget {
               ),
             ),
           ),
+
+          const SizedBox(height: 25),
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.lightGreen.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.grid_view,
+                        color: Color.fromARGB(255, 78, 78, 78),
+                        size: 20,
+                      ),
+                      SizedBox(width: 8),
+                      const Text(
+                        'Menú Principal',
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 78, 78, 78),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+
           const SizedBox(height: 25),
           Expanded(
             child: GridView.builder(
@@ -168,6 +209,7 @@ class HomeAdmin extends StatelessWidget {
                               menuItems[index]['title'],
                               style: const TextStyle(
                                 fontWeight: FontWeight.w500,
+                                color: Color.fromARGB(255, 78, 78, 78),
                                 fontSize: 12,
                               ),
                               textAlign: TextAlign.center,

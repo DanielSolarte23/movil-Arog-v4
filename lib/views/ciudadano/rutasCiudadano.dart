@@ -51,6 +51,7 @@ class _RutasCiudadanoState extends State<RutasCiudadano> {
           ),
           child: const TextField(
             decoration: InputDecoration(
+              hintText: 'Buscar...',
               prefixIcon: Icon(Icons.search, color: Colors.grey),
               border: InputBorder.none,
               contentPadding: EdgeInsets.symmetric(vertical: 5),
