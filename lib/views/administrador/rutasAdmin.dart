@@ -1,15 +1,48 @@
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:arog_movil/views/ciudadano/configuracionCiudadano.dart';
 import 'package:arog_movil/views/notificaciones/configurarNotificaciones.dart';
 import 'package:arog_movil/views/administrador/homeAdmin.dart';
 import 'package:arog_movil/views/ciudadano/perfilCiudadano.dart';
 import 'package:flutter/material.dart';
 
-class RutasAdmin extends StatelessWidget {
+class RutasAdmin extends StatefulWidget {
+  @override
+  State<RutasAdmin> createState() => RutasAdminState();
+}
+
+class RutasAdminState extends State<RutasAdmin> {
+  final MapController _mapController = MapController();
+  bool _isMapLoading = true;
+  LatLng _currentPosition = LatLng(4.570868, -74.297333);
+  double _currentZoom = 13.0;
+
   final List<Map<String, dynamic>> menuItems = [
     {'title': 'Nueva ruta', 'icon': Icons.route},
     {'title': 'Listar', 'icon': Icons.assignment},
     {'title': 'Editar', 'icon': Icons.edit},
   ];
+
+  Future<void> _getCurrentLocation() async {
+    try {
+      Position position = await Geolocator.getCurrentPosition();
+      setState(() {
+        _currentPosition = LatLng(position.latitude, position.longitude);
+        _isMapLoading = false;
+      });
+      _mapController.move(_currentPosition, _currentZoom);
+    } catch (e) {
+      print("Error obteniendo ubicación: $e");
+      setState(() => _isMapLoading = false);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getCurrentLocation();
+  }
 
   void _showEditModal(BuildContext context) {
     // Controladores individuales para cada campo
@@ -458,11 +491,10 @@ class RutasAdmin extends StatelessWidget {
           const SizedBox(height: 20),
           Container(
             height: 250,
-            width: 270,
+            width: MediaQuery.of(context).size.width * 0.9,
             decoration: BoxDecoration(
-              color: Colors.grey[100],
-              border: Border.all(width: 2, color: Colors.green),
-              borderRadius: BorderRadius.all(Radius.circular(10)),
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(width: 2, color: Colors.lightGreen),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.2),
@@ -471,9 +503,93 @@ class RutasAdmin extends StatelessWidget {
                   offset: Offset(4, 4),
                 ),
               ],
-              image: const DecorationImage(
-                image: AssetImage('assets/images/Arog-2.png'),
-                fit: BoxFit.cover,
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Stack(
+                children: [
+                  FlutterMap(
+                    mapController: _mapController,
+                    options: MapOptions(
+                      center: _currentPosition,
+                      zoom: _currentZoom,
+                      minZoom: 5,
+                      maxZoom: 18,
+                      onMapReady: () {
+                        setState(() => _isMapLoading = false);
+                      },
+                    ),
+                    children: [
+                      TileLayer(
+                        urlTemplate:
+                            'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                        userAgentPackageName: 'com.example.app',
+                      ),
+                      MarkerLayer(
+                        markers: [
+                          Marker(
+                            point: _currentPosition,
+                            width: 80,
+                            height: 80,
+                            child: Icon(
+                              Icons.location_on,
+                              color: Colors.lightGreen,
+                              size: 40,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Positioned(
+                    right: 10,
+                    bottom: 10,
+                    child: Column(
+                      children: [
+                        FloatingActionButton.small(
+                          heroTag: "zoomIn",
+                          onPressed: () {
+                            final zoom = _mapController.zoom + 1;
+                            _mapController.move(_currentPosition, zoom);
+                          },
+                          backgroundColor: Colors.white,
+                          child: Icon(Icons.add, color: Colors.lightGreen),
+                        ),
+                        SizedBox(height: 8),
+                        FloatingActionButton.small(
+                          heroTag: "zoomOut",
+                          onPressed: () {
+                            final zoom = _mapController.zoom - 1;
+                            _mapController.move(_currentPosition, zoom);
+                          },
+                          backgroundColor: Colors.white,
+                          child: Icon(Icons.remove, color: Colors.lightGreen),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                    right: 10,
+                    top: 10,
+                    child: FloatingActionButton.small(
+                      heroTag: "myLocation",
+                      onPressed: _getCurrentLocation,
+                      backgroundColor: Colors.white,
+                      child: Icon(Icons.my_location, color: Colors.lightGreen),
+                    ),
+                  ),
+                  if (_isMapLoading)
+                    Container(
+                      color: Colors.white,
+                      child: Center(
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            Colors.lightGreen,
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
               ),
             ),
           ),
@@ -516,13 +632,6 @@ class RutasAdmin extends StatelessWidget {
                     onTap: handleItemTap,
                     borderRadius: BorderRadius.circular(15),
                     child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4),
-                        border: Border.all(
-                          color: Colors.green.withOpacity(0.2),
-                          width: 0.5,
-                        ),
-                      ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -553,7 +662,7 @@ class RutasAdmin extends StatelessWidget {
             ),
           ),
           Container(
-            height: 300,
+            height: 311,
             decoration: BoxDecoration(
               color: const Color.fromARGB(255, 121, 177, 61),
               borderRadius: BorderRadius.only(

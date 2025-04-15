@@ -1,28 +1,50 @@
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:arog_movil/views/ciudadano/configuracionCiudadano.dart';
 import 'package:arog_movil/views/notificaciones/configurarNotificaciones.dart';
+import 'package:arog_movil/views/administrador/homeAdmin.dart';
 import 'package:arog_movil/views/ciudadano/perfilCiudadano.dart';
 import 'package:flutter/material.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 class RutasCiudadano extends StatefulWidget {
   @override
-  _RutasCiudadanoState createState() => _RutasCiudadanoState();
+  State<RutasCiudadano> createState() => RutasCiudadanoState();
 }
 
-class _RutasCiudadanoState extends State<RutasCiudadano> {
-  bool _showCalendar = false;
-  DateTime _focusedDay = DateTime.now();
-  DateTime? _selectedDay;
+class RutasCiudadanoState extends State<RutasCiudadano> {
+  final MapController _mapController = MapController();
+  bool _isMapLoading = true;
+  LatLng _currentPosition = LatLng(4.570868, -74.297333);
+  double _currentZoom = 13.0;
 
-  List<DateTime> _generateWeekDays() {
-    DateTime today = DateTime.now();
-    return List.generate(7, (index) => today.add(Duration(days: index - 3)));
+  final List<Map<String, dynamic>> menuItems = [
+    {'title': 'Puntos', 'icon': Icons.pin_drop},
+    {'title': 'Horarios', 'icon': Icons.calendar_today},
+  ];
+
+  Future<void> _getCurrentLocation() async {
+    try {
+      Position position = await Geolocator.getCurrentPosition();
+      setState(() {
+        _currentPosition = LatLng(position.latitude, position.longitude);
+        _isMapLoading = false;
+      });
+      _mapController.move(_currentPosition, _currentZoom);
+    } catch (e) {
+      print("Error obteniendo ubicación: $e");
+      setState(() => _isMapLoading = false);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getCurrentLocation();
   }
 
   @override
   Widget build(BuildContext context) {
-    List<DateTime> days = _generateWeekDays();
-
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -79,137 +101,231 @@ class _RutasCiudadanoState extends State<RutasCiudadano> {
               );
             },
           ),
+          IconButton(
+            icon: const Icon(Icons.home, color: Colors.lightGreen),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomeAdmin()),
+              );
+            },
+          ),
         ],
       ),
       body: SingleChildScrollView(
+        // Permite desplazamiento vertical
         child: Column(
           children: [
             const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Icon(
-                  Icons.pin_drop,
-                  size: 28,
-                  color: Color.fromARGB(255, 78, 78, 78),
-                ),
-                SizedBox(width: 10),
-                Text(
-                  'Rutas',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 78, 78, 78),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 80),
-
-            SizedBox(
-              width: 300,
-              height: 80,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: days.length,
-                itemBuilder: (context, index) {
-                  DateTime day = days[index];
-                  bool isSelected =
-                      _selectedDay?.day == day.day &&
-                      _selectedDay?.month == day.month &&
-                      _selectedDay?.year == day.year;
-
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _selectedDay = day;
-                        _focusedDay = day;
-                        _showCalendar = true;
-                      });
-                    },
-                    child: Container(
-                      width: 60,
-                      margin: EdgeInsets.symmetric(horizontal: 5),
-                      decoration: BoxDecoration(
-                        color:
-                            isSelected
-                                ? Colors.lightGreen[600]
-                                : const Color.fromARGB(255, 209, 207, 207),
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: Colors.green, width: 2.0),
+            Container(
+              width: double.infinity,
+              alignment: Alignment.center,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  SizedBox(width: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(
+                        Icons.pin_drop,
+                        size: 26,
+                        color: Color.fromARGB(255, 78, 78, 78),
                       ),
+                      SizedBox(width: 10),
+                      Text(
+                        'Rutas',
+                        style: TextStyle(
+                          fontSize: 19,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 78, 78, 78),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
+            Container(
+              height: 250,
+              width: MediaQuery.of(context).size.width * 0.9,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(width: 2, color: Colors.lightGreen),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    blurRadius: 8,
+                    spreadRadius: 1,
+                    offset: Offset(4, 4),
+                  ),
+                ],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Stack(
+                  children: [
+                    FlutterMap(
+                      mapController: _mapController,
+                      options: MapOptions(
+                        center: _currentPosition,
+                        zoom: _currentZoom,
+                        minZoom: 5,
+                        maxZoom: 18,
+                        onMapReady: () {
+                          setState(() => _isMapLoading = false);
+                        },
+                      ),
+                      children: [
+                        TileLayer(
+                          urlTemplate:
+                              'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                          userAgentPackageName: 'com.example.app',
+                        ),
+                        MarkerLayer(
+                          markers: [
+                            Marker(
+                              point: _currentPosition,
+                              width: 80,
+                              height: 80,
+                              child: Icon(
+                                Icons.location_on,
+                                color: Colors.lightGreen,
+                                size: 40,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Positioned(
+                      right: 10,
+                      bottom: 10,
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            '${day.day}',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: isSelected ? Colors.white : Colors.black,
-                            ),
+                          FloatingActionButton.small(
+                            heroTag: "zoomIn",
+                            onPressed: () {
+                              final zoom = _mapController.zoom + 1;
+                              _mapController.move(_currentPosition, zoom);
+                            },
+                            backgroundColor: Colors.white,
+                            child: Icon(Icons.add, color: Colors.lightGreen),
                           ),
-                          Text(
-                            _getWeekdayName(day.weekday),
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: isSelected ? Colors.white : Colors.black,
-                            ),
+                          SizedBox(height: 8),
+                          FloatingActionButton.small(
+                            heroTag: "zoomOut",
+                            onPressed: () {
+                              final zoom = _mapController.zoom - 1;
+                              _mapController.move(_currentPosition, zoom);
+                            },
+                            backgroundColor: Colors.white,
+                            child: Icon(Icons.remove, color: Colors.lightGreen),
                           ),
                         ],
                       ),
                     ),
-                  );
-                },
-              ),
-            ),
-
-            const SizedBox(height: 40),
-
-            if (_showCalendar)
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TableCalendar(
-                  firstDay: DateTime.utc(2020, 1, 1),
-                  lastDay: DateTime.utc(2030, 12, 31),
-                  focusedDay: _focusedDay,
-                  selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
-                  onDaySelected: (selectedDay, focusedDay) {
-                    setState(() {
-                      _selectedDay = selectedDay;
-                      _focusedDay = focusedDay;
-                    });
-                  },
-                  calendarStyle: CalendarStyle(
-                    todayDecoration: BoxDecoration(
-                      color: Colors.lightGreen,
-                      shape: BoxShape.circle,
+                    Positioned(
+                      right: 10,
+                      top: 10,
+                      child: FloatingActionButton.small(
+                        heroTag: "myLocation",
+                        onPressed: _getCurrentLocation,
+                        backgroundColor: Colors.white,
+                        child: Icon(
+                          Icons.my_location,
+                          color: Colors.lightGreen,
+                        ),
+                      ),
                     ),
-                    selectedDecoration: BoxDecoration(
-                      color: Colors.lightGreen[800],
-                      shape: BoxShape.circle,
-                    ),
-                  ),
+                    if (_isMapLoading)
+                      Container(
+                        color: Colors.white,
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              Colors.lightGreen,
+                            ),
+                          ),
+                        ),
+                      ),
+                  ],
                 ),
               ),
-
+            ),
             const SizedBox(height: 40),
+            Center(
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                spacing: 20.0,
+                runSpacing: 20.0,
+                children:
+                    menuItems.map((item) {
+                      return SizedBox(
+                        width: 120,
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            side: BorderSide(
+                              color: Colors.grey.withOpacity(0.3),
+                              width: 1,
+                            ),
+                          ),
+                          child: InkWell(
+                            onTap: () {
+                              if (item['route'] != null) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => item['route'],
+                                  ),
+                                );
+                              }
+                            },
+                            borderRadius: BorderRadius.circular(8),
+                            child: Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    item['icon'],
+                                    color: Colors.lightGreen[600],
+                                    size: 30,
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Text(
+                                    item['title'],
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 14,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    }).toList(),
+              ),
+            ),
+            const SizedBox(height: 40),
+            Container(
+              height: 311,
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 121, 177, 61),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(40.0),
+                  topRight: Radius.circular(40.0),
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
-  }
-
-  String _getWeekdayName(int weekday) {
-    const List<String> weekdays = [
-      'Dom',
-      'Lun',
-      'Mar',
-      'Mié',
-      'Jue',
-      'Vie',
-      'Sáb',
-    ];
-    return weekdays[weekday % 7];
   }
 }

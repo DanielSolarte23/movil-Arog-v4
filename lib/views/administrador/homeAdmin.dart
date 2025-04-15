@@ -1,3 +1,5 @@
+import 'package:another_flushbar/flushbar.dart';
+import 'dart:ui';
 import 'package:arog_movil/views/ciudadano/configuracionCiudadano.dart';
 import 'package:arog_movil/views/notificaciones/configurarNotificaciones.dart';
 import 'package:arog_movil/views/administrador/gestionUserAdmin.dart';
@@ -6,7 +8,12 @@ import 'package:arog_movil/views/administrador/rutasAdmin.dart';
 import 'package:arog_movil/views/administrador/tareasAdmin.dart';
 import 'package:flutter/material.dart';
 
-class HomeAdmin extends StatelessWidget {
+class HomeAdmin extends StatefulWidget {
+  @override
+  _HomeAdminState createState() => _HomeAdminState();
+}
+
+class _HomeAdminState extends State<HomeAdmin> {
   final List<Map<String, dynamic>> menuItems = [
     {'title': 'Rutas', 'icon': Icons.route, 'route': RutasAdmin()},
     {'title': 'Tareas', 'icon': Icons.assignment, 'route': Tareasadmin()},
@@ -26,6 +33,47 @@ class HomeAdmin extends StatelessWidget {
       'route': null,
     },
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _mostrarAlerta();
+    });
+  }
+
+  void _mostrarAlerta() {
+    Flushbar(
+      padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+      titleText: const Text(
+        "Inicio",
+        style: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: Color.fromARGB(255, 102, 170, 25),
+        ),
+      ),
+      messageText: const Text(
+        "Bienvenido Administrador",
+        style: TextStyle(
+          fontSize: 16,
+          fontFamily: 'RobotoMono',
+          fontWeight: FontWeight.w600,
+          color: Color.fromARGB(255, 102, 170, 25),
+        ),
+      ),
+      duration: Duration(seconds: 2),
+      backgroundColor: const Color.fromARGB(
+        255,
+        242,
+        243,
+        242,
+      ).withOpacity(0.85),
+      borderRadius: BorderRadius.circular(12),
+      margin: EdgeInsets.all(16),
+      flushbarPosition: FlushbarPosition.TOP,
+    )..show(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +159,6 @@ class HomeAdmin extends StatelessWidget {
               ),
             ),
           ),
-
           const SizedBox(height: 25),
           Container(
             padding: const EdgeInsets.symmetric(vertical: 16),
@@ -149,7 +196,6 @@ class HomeAdmin extends StatelessWidget {
               ],
             ),
           ),
-
           const SizedBox(height: 25),
           Expanded(
             child: GridView.builder(
