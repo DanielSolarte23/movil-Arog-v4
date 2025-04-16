@@ -44,6 +44,7 @@ flutter:
     - assets/images/Arog-1.png
     - assets/images/Arog-2.png
     - assets/images/Perfil.jpg
+    - assets/images/point.png
 
   # Splash screen configuration
   # Optional additional parameters you might want to add:

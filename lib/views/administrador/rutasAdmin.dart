@@ -225,8 +225,16 @@ class RutasAdminState extends State<RutasAdmin> {
             Navigator.pop(context);
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
-                content: Text('Cambios guardados correctamente'),
-                backgroundColor: Colors.lightGreen,
+                content: Text(
+                  'Cambios realizados correctamente',
+                  style: TextStyle(
+                    color: Colors.lightGreen,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    fontFamily: 'Roboto',
+                  ),
+                ),
+                backgroundColor: Color.fromARGB(255, 242, 243, 242),
               ),
             );
           },
@@ -255,10 +263,9 @@ class RutasAdminState extends State<RutasAdmin> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20.0),
           ),
-          child: Container(
-            width: MediaQuery.of(context).size.width * 0.9,
+          child: ConstrainedBox(
             constraints: BoxConstraints(
-              maxHeight: MediaQuery.of(context).size.height * 0.8,
+              maxHeight: MediaQuery.of(context).size.height * 0.7,
             ),
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(16.0),
@@ -362,8 +369,21 @@ class RutasAdminState extends State<RutasAdmin> {
                           Navigator.pop(context);
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
-                              content: Text('Ruta creada correctamente'),
-                              backgroundColor: Colors.lightGreen,
+                              content: Text(
+                                'Ruta creada correctamente',
+                                style: TextStyle(
+                                  color: Colors.lightGreen,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  fontFamily: 'Roboto',
+                                ),
+                              ),
+                              backgroundColor: Color.fromARGB(
+                                255,
+                                242,
+                                243,
+                                242,
+                              ),
                             ),
                           );
                         },
@@ -383,6 +403,23 @@ class RutasAdminState extends State<RutasAdmin> {
           ),
         );
       },
+    );
+  }
+
+  void _mostrarSnackBarListar(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text(
+          'Listado de rutas actualizado correctamente',
+          style: TextStyle(
+            color: Colors.lightGreen,
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+            fontFamily: 'Roboto',
+          ),
+        ),
+        backgroundColor: Color.fromARGB(255, 242, 243, 242),
+      ),
     );
   }
 
@@ -530,11 +567,11 @@ class RutasAdminState extends State<RutasAdmin> {
                           Marker(
                             point: _currentPosition,
                             width: 80,
-                            height: 80,
-                            child: Icon(
-                              Icons.location_on,
-                              color: Colors.lightGreen,
-                              size: 40,
+                            height: 110,
+                            child: Image.asset(
+                              'assets/images/point.png',
+                              width: 80,
+                              height: 80,
                             ),
                           ),
                         ],
@@ -612,6 +649,9 @@ class RutasAdminState extends State<RutasAdmin> {
                       break;
                     case 'Editar':
                       _showEditModal(context);
+                      break;
+                    case 'Listar':
+                      _mostrarSnackBarListar(context);
                       break;
                   }
                 }
