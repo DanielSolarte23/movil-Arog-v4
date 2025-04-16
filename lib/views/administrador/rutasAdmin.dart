@@ -593,7 +593,7 @@ class RutasAdminState extends State<RutasAdmin> {
               ),
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 25),
           Expanded(
             child: GridView.builder(
               padding: const EdgeInsets.all(12),
@@ -618,8 +618,8 @@ class RutasAdminState extends State<RutasAdmin> {
 
                 return Card(
                   margin: const EdgeInsets.symmetric(
-                    horizontal: 2,
-                    vertical: 2,
+                    horizontal: 10,
+                    vertical: 7,
                   ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),

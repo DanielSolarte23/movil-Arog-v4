@@ -258,12 +258,12 @@ class RutasRecolectorState extends State<RutasRecolector> {
             Center(
               child: Wrap(
                 alignment: WrapAlignment.center,
-                spacing: 20.0,
-                runSpacing: 20.0,
+                spacing: 10.0,
+                runSpacing: 10.0,
                 children:
                     menuItems.map((item) {
                       return SizedBox(
-                        width: 120,
+                        width: 110,
                         child: Card(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15),
@@ -292,14 +292,14 @@ class RutasRecolectorState extends State<RutasRecolector> {
                                   Icon(
                                     item['icon'],
                                     color: Colors.lightGreen[600],
-                                    size: 30,
+                                    size: 24,
                                   ),
                                   const SizedBox(height: 8),
                                   Text(
                                     item['title'],
                                     style: const TextStyle(
                                       fontWeight: FontWeight.w500,
-                                      fontSize: 14,
+                                      fontSize: 12,
                                     ),
                                     textAlign: TextAlign.center,
                                   ),

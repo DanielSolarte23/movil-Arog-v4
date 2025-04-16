@@ -1,12 +1,17 @@
 import 'package:arog_movil/views/ciudadano/configuracionCiudadano.dart';
 import 'package:arog_movil/views/notificaciones/configurarNotificaciones.dart';
-//import 'package:arog_movil/views/encuestasCiudadano.dart';
 import 'package:arog_movil/views/ciudadano/perfilCiudadano.dart';
-
 import 'package:arog_movil/views/recolector/rutasRecolector.dart';
 import 'package:flutter/material.dart';
+import 'package:another_flushbar/flushbar.dart';
+import 'dart:ui';
 
-class HomeRecolector extends StatelessWidget {
+class HomeRecolector extends StatefulWidget {
+  @override
+  _HomeRecolectorState createState() => _HomeRecolectorState();
+}
+
+class _HomeRecolectorState extends State<HomeRecolector> {
   final List<Map<String, dynamic>> menuItems = [
     {'title': 'Rutas', 'icon': Icons.route, 'route': RutasRecolector()},
     {'title': 'Tareas', 'icon': Icons.assignment, 'route': null},
@@ -21,6 +26,47 @@ class HomeRecolector extends StatelessWidget {
       'route': null,
     },
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _mostrarAlerta();
+    });
+  }
+
+  void _mostrarAlerta() {
+    Flushbar(
+      padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+      titleText: const Text(
+        "Inicio",
+        style: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: Color.fromARGB(255, 102, 170, 25),
+        ),
+      ),
+      messageText: const Text(
+        "Bienvenido Recolector",
+        style: TextStyle(
+          fontSize: 16,
+          fontFamily: 'RobotoMono',
+          fontWeight: FontWeight.w600,
+          color: Color.fromARGB(255, 102, 170, 25),
+        ),
+      ),
+      duration: Duration(seconds: 2),
+      backgroundColor: const Color.fromARGB(
+        255,
+        242,
+        243,
+        242,
+      ).withOpacity(0.85),
+      borderRadius: BorderRadius.circular(12),
+      margin: EdgeInsets.all(16),
+      flushbarPosition: FlushbarPosition.TOP,
+    )..show(context);
+  }
 
   @override
   Widget build(BuildContext context) {
