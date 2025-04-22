@@ -247,6 +247,7 @@ class RutasAdminState extends State<RutasAdmin> {
     );
   }
 
+  //modal
   void _showNuevaRutaModal(BuildContext context) {
     // Controladores para cada campo
     final routeNameController = TextEditingController();
@@ -256,6 +257,7 @@ class RutasAdminState extends State<RutasAdmin> {
     final formTypeController = TextEditingController();
     final collectionPointController = TextEditingController();
 
+    //formulario
     showDialog(
       context: context,
       builder: (BuildContext context) {

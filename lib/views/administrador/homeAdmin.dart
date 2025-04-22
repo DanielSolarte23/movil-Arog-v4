@@ -6,6 +6,8 @@ import 'package:arog_movil/views/administrador/gestionUserAdmin.dart';
 import 'package:arog_movil/views/ciudadano/perfilCiudadano.dart';
 import 'package:arog_movil/views/administrador/rutasAdmin.dart';
 import 'package:arog_movil/views/administrador/tareasAdmin.dart';
+import 'package:arog_movil/views/administrador/ListraFormulario.dart';
+
 import 'package:flutter/material.dart';
 
 class HomeAdmin extends StatefulWidget {
@@ -26,7 +28,7 @@ class _HomeAdminState extends State<HomeAdmin> {
     {'title': 'Pagos', 'icon': Icons.payment, 'route': null},
     {'title': 'Galería', 'icon': Icons.image, 'route': null},
     {'title': 'Informes', 'icon': Icons.info_rounded, 'route': null},
-    {'title': 'Registros', 'icon': Icons.person, 'route': null},
+    {'title': 'Registros', 'icon': Icons.person, 'route': ListarFormulario()},
     {
       'title': 'Estadísticas y métricas',
       'icon': Icons.analytics,
