@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:arog_movil/screen/Header.dart';
+import 'package:arog_movil/screen/Header.dart'; // Tu CustomLayout
 import 'package:arog_movil/screen/Notificaciones.dart';
 
 class Tareas extends StatefulWidget {
@@ -18,7 +18,6 @@ class _TareasState extends State<Tareas> {
   final List<DateTime> fechas = List.generate(7, (index) => DateTime.now().add(Duration(days: index)));
 
   bool localeCargado = false;
-  bool mostrarOpciones = false;
 
   @override
   void initState() {
@@ -103,8 +102,7 @@ class _TareasState extends State<Tareas> {
         ),
         const SizedBox(height: 20),
         _buildCarruselFechas(),
-        const SizedBox(height: 20),
-        _buildTarjetaTareas(),
+        // Aquí puedes seguir añadiendo más contenido debajo
       ],
     );
   }
@@ -158,81 +156,6 @@ class _TareasState extends State<Tareas> {
             ),
           );
         },
-      ),
-    );
-  }
-
-  Widget _buildTarjetaTareas() {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            flex: 4,
-            child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  mostrarOpciones = !mostrarOpciones;
-                });
-              },
-              child: Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
-                      blurRadius: 8,
-                      offset: const Offset(0, 4),
-                    ),
-                  ],
-                  border: Border.all(color: Colors.grey.shade300),
-                ),
-                child: const ListTile(
-                  leading: Icon(Icons.assignment, color: Colors.lightBlue),
-                  title: Text('Enviar informe de avance'),
-                  subtitle: Text('10:00 AM - Lunes'),
-                  trailing: Icon(Icons.check_circle, color: Colors.green),
-                ),
-              ),
-            ),
-          ),
-          if (mostrarOpciones) ...[
-            const SizedBox(width: 8),
-            Flexible(
-              flex: 2,
-              child: Row(
-                children: [
-                  Expanded(child: _buildOpcion('Archivar', Icons.archive, Colors.orange)),
-                  const SizedBox(width: 8),
-                  Expanded(child: _buildOpcion('Eliminar', Icons.delete, Colors.red)),
-                ],
-              ),
-            ),
-          ],
-        ],
-      ),
-    );
-  }
-
-  Widget _buildOpcion(String texto, IconData icono, Color color) {
-    return Container(
-      height: 100,
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: color),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icono, color: color),
-          const SizedBox(height: 4),
-          Text(texto, style: TextStyle(color: color, fontWeight: FontWeight.bold)),
-        ],
       ),
     );
   }
